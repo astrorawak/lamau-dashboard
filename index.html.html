@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Lamau Persada Mandiri</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #F0F4F8;
+  color: #1a2333;
+  min-height: 100vh;
+}
+
+/* TOPBAR */
+.topbar {
+  background: linear-gradient(135deg, #1a2f5e, #243b7a);
+  padding: 48px 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.topbar::before {
+  content: '';
+  position: absolute;
+  right: -30px; bottom: -30px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.co-badge { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#7fa8e0; margin-bottom:3px; }
+.dash-title { font-size:24px; font-weight:800; color:#fff; margin-bottom:12px; }
+.topbar-row { display:flex; justify-content:space-between; align-items:center; }
+.date-badge { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:6px 14px; font-size:11px; font-weight:600; color:#c8daff; }
+.analyst { font-size:11px; font-weight:700; color:#a8c4ff; }
+
+/* TAB NAV */
+.tab-nav {
+  display:flex; background:#fff;
+  border-bottom:2px solid #e8ecf4;
+  position:sticky; top:0; z-index:100;
+}
+.tab-btn {
+  flex:1; padding:14px 8px;
+  border:none; background:none;
+  font-size:11px; font-weight:700;
+  color:#8a96a8; cursor:pointer;
+  border-bottom:3px solid transparent;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  text-transform:uppercase; letter-spacing:0.6px;
+  transition:all 0.25s;
+}
+.tab-btn.active { color:#2563eb; border-bottom-color:#2563eb; }
+
+/* TAB CONTENT */
+.tab-content { display:none; padding-bottom:30px; }
+.tab-content.active { display:block; animation:fadeUp 0.3s ease; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* KAS CARDS */
+.kas-section { padding:12px 14px 0; }
+.kas-cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.kas-card {
+  background:#fff; border-radius:14px; padding:14px;
+  box-shadow:0 1px 6px rgba(0,0,0,0.05);
+  border:1px solid #e8ecf4; cursor:pointer;
+  transition:transform 0.15s;
+}
+.kas-card:active { transform:scale(0.97); }
+.kas-card.full { grid-column:1/-1; }
+.kas-icon { font-size:24px; margin-bottom:6px; }
+.kas-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8a96a8; margin-bottom:8px; }
+.kas-val { font-size:18px; font-weight:800; line-height:1.2; margin-bottom:4px; }
+.kas-val.green { color:#16a34a; }
+.kas-val.red   { color:#dc2626; }
+.kas-val.blue  { color:#2563eb; }
+.kas-sub { font-size:10px; color:#8a96a8; font-weight:600; }
+
+/* DATE SELECT */
+.date-select-wrap { padding:12px 14px; }
+.date-select-wrap select {
+  width:100%; padding:10px 12px;
+  border:1px solid #e8ecf4; border-radius:10px;
+  font-size:13px; font-family:'Plus Jakarta Sans',sans-serif;
+  color:#1a2333; background:#fff;
+  box-shadow:0 1px 6px rgba(0,0,0,0.05);
+}
+
+/* SEC LABEL */
+.sec-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a96a8; padding:14px 14px 8px; }
+
+/* RAM CARDS */
+.ram-cards { padding:0 14px; display:flex; flex-direction:column; gap:10px; padding-bottom:10px; }
+.ram-card {
+  background:#fff; border-radius:16px;
+  border:1px solid #e8ecf4; overflow:hidden;
+  cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  transition:transform 0.15s;
+}
+.ram-card:active { transform:scale(0.985); }
+.card-accent { height:4px; }
+.untung .card-accent { background:linear-gradient(90deg,#16a34a,#86efac); }
+.rugi   .card-accent { background:linear-gradient(90deg,#dc2626,#fca5a5); }
+.tipis  .card-accent { background:linear-gradient(90deg,#d97706,#fcd34d); }
+.card-body { padding:13px 14px 14px; }
+.card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+.ram-title { font-size:17px; font-weight:800; color:#1a2333; }
+.ram-meta  { font-size:11px; color:#8a96a8; font-weight:600; margin-top:3px; }
+.status-badge { font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+.untung .status-badge { background:#E8FAF2; color:#16a34a; border:1px solid #bbf7d0; }
+.rugi   .status-badge { background:#FFF0F0; color:#dc2626; border:1px solid #fecaca; }
+.tipis  .status-badge { background:#FFF9E6; color:#d97706; border:1px solid #fcd34d; }
+.card-kpi { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:12px; }
+.ck { background:#F7F9FC; border-radius:10px; padding:10px 8px; text-align:center; border:1px solid #eef0f5; }
+.ck-label { font-size:9px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#8a96a8; margin-bottom:5px; line-height:1.3; }
+.ck-val   { font-size:14px; font-weight:800; line-height:1; color:#1a2333; }
+.ck-val.green { color:#16a34a; }
+.ck-val.red   { color:#dc2626; }
+.ck-val.amber { color:#d97706; }
+.ck-val.blue  { color:#2563eb; }
+.ck-unit { font-size:9px; color:#8a96a8; font-weight:600; margin-top:3px; }
+.card-footer { display:flex; justify-content:space-between; align-items:center; padding-top:11px; border-top:1px solid #f0f2f6; }
+.detail-btn {
+  font-size:12px; font-weight:700; color:#2563eb;
+  background:#EBF3FF; padding:6px 14px; border-radius:20px;
+  border:1px solid #bfdbfe; cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.detail-btn:active { transform:scale(0.95); }
+
+/* LAPORAN DETAIL PAGE */
+#page-laporan { display:none; }
+#page-laporan.active { display:block; }
+.laporan-back-bar {
+  background: linear-gradient(135deg,#1a2f5e,#243b7a);
+  padding:12px 14px;
+  display:flex; align-items:center; gap:10px;
+  position:sticky; top:0; z-index:100;
+}
+.laporan-back-btn {
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  color:#fff; padding:7px 14px;
+  border-radius:20px; font-size:12px; font-weight:700;
+  cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
+}
+.laporan-title-bar { font-size:14px; font-weight:700; color:#fff; }
+
+/* LAPORAN CONTENT — embed CSS dari file laporan */
+.laporan-body { background:#F0F4F8; padding-bottom:20px; }
+
+/* MODAL */
+.modal {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.5); z-index:200;
+  animation:fadeIn 0.2s ease;
+}
+.modal.show { display:flex; align-items:flex-end; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.modal-box {
+  background:#fff; width:100%; border-radius:24px 24px 0 0;
+  padding:24px 18px 30px; max-height:88vh; overflow-y:auto;
+  animation:slideUp 0.28s ease;
+}
+@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.modal-close {
+  float:right; background:#f0f2f6; border:none;
+  width:30px; height:30px; border-radius:50%;
+  font-size:16px; cursor:pointer; color:#8a96a8;
+  display:flex; align-items:center; justify-content:center;
+}
+.modal-title { font-size:17px; font-weight:800; color:#1a2333; margin-bottom:16px; }
+.mrow { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #f0f2f6; font-size:13px; }
+.mrow:last-child { border-bottom:none; }
+.ml { color:#4a5568; font-weight:500; }
+.mr { font-weight:700; color:#1a2333; }
+.mr.green { color:#16a34a; }
+.mr.red   { color:#dc2626; }
+.mr.blue  { color:#2563eb; }
+.mdiv { height:1px; background:linear-gradient(90deg,#e0e5ef,transparent); margin:8px 0; }
+.mtotal {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 14px; background:#1a2f5e; border-radius:10px; margin-top:12px;
+}
+.mtl { font-size:12px; font-weight:600; color:#a8c4ff; }
+.mtv { font-size:16px; font-weight:800; color:#fff; }
+.cat-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8a96a8; margin-bottom:8px; margin-top:4px; }
+.cat-item { display:flex; justify-content:space-between; padding:7px 0; font-size:12px; color:#4a5568; border-bottom:1px solid #f8f9fc; }
+.cat-item-val { font-weight:700; color:#1a2333; }
+.cat-sub { display:flex; justify-content:space-between; padding:8px 0; font-size:12px; font-weight:700; color:#1a2333; border-top:1px solid #e8ecf4; margin-top:4px; }
+.dep-item { display:flex; justify-content:space-between; align-items:center; padding:11px 13px; background:#F7F9FC; border-radius:10px; margin-bottom:7px; border:1px solid #eef0f5; }
+.dep-name { font-size:12px; font-weight:700; color:#1a2333; }
+.dep-val  { font-size:14px; font-weight:800; color:#2563eb; }
+
+/* FOOTER */
+.footer { text-align:center; padding:16px; font-size:10px; color:#b0b8c6; font-weight:500; letter-spacing:0.5px; }
+</style>
+</head>
+<body>
+
+<!-- MAIN DASHBOARD APP -->
+<div id="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="co-badge">Lamau Persada Mandiri</div>
+    <div class="dash-title">Dashboard Usaha</div>
+    <div class="topbar-row">
+      <div class="date-badge">📅 9 Mei 2026</div>
+      <div class="analyst">Rizky Karman</div>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('kas',this)">💰 Kas</button>
+    <button class="tab-btn" onclick="showTab('ram',this)">📋 Laporan RAM</button>
+    <button class="tab-btn" onclick="showTab('arsip',this)">📅 Arsip</button>
+  </div>
+
+  <!-- TAB KAS -->
+  <div id="tab-kas" class="tab-content active">
+    <div class="kas-section">
+      <div class="kas-cards">
+        <div class="kas-card" onclick="openModal('modal-kas')">
+          <div class="kas-icon">💰</div>
+          <div class="kas-label">Sisa Kas Usaha</div>
+          <div class="kas-val green" id="valSisaKas">Rp 46.805.000</div>
+          <div class="kas-sub">Tap untuk detail ›</div>
+        </div>
+        <div class="kas-card" onclick="openModal('modal-keluar')">
+          <div class="kas-icon">📊</div>
+          <div class="kas-label">Pengeluaran Hari Ini</div>
+          <div class="kas-val red" id="valKeluar">Rp 141.616.000</div>
+          <div class="kas-sub">Tap untuk detail ›</div>
+        </div>
+        <div class="kas-card full" onclick="openModal('modal-deposit')">
+          <div class="kas-icon">🏦</div>
+          <div class="kas-label">Deposit Usaha — Terikat per RAM</div>
+          <div class="kas-val blue" id="valDeposit">Rp 90.500.000</div>
+          <div class="kas-sub">3 RAM · Tap untuk breakdown ›</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">Lamau Persada Mandiri · Dashboard Usaha</div>
+  </div>
+
+  <!-- TAB RAM -->
+  <div id="tab-ram" class="tab-content">
+    <div class="sec-label">📋 Laporan RAM Harian</div>
+    <div class="ram-cards">
+
+      <!-- RAM MAHAP -->
+      <div class="ram-card untung">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <div>
+              <div class="ram-title">RAM Mahap</div>
+              <div class="ram-meta">📍 PAM · Grading 4% · Rp 3.500/kg</div>
+            </div>
+            <div class="status-badge">✅ Untung</div>
+          </div>
+          <div class="card-kpi">
+            <div class="ck">
+              <div class="ck-label">Est. Untung</div>
+              <div class="ck-val green">+Rp 4.874.961</div>
+              <div class="ck-unit">⚠️ Belum potong susut</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Modal/kg</div>
+              <div class="ck-val amber">3.419</div>
+              <div class="ck-unit">Rp/kg (inc. ongkos)</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Sisa Restan</div>
+              <div class="ck-val blue">16.090</div>
+              <div class="ck-unit">kg</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div style="font-size:11px;color:#8a96a8;">🚛 Hendi · Jum · Agus</div>
+            <button class="detail-btn" onclick="bukaLaporan('RAM Mahap','mahap')">Detail →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAM LAMAU -->
+      <div class="ram-card rugi">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <div>
+              <div class="ram-title">RAM Lamau</div>
+              <div class="ram-meta">📍 Mandor · Grading 5% · Rp 3.900/kg</div>
+            </div>
+            <div class="status-badge">❌ Rugi</div>
+          </div>
+          <div class="card-kpi">
+            <div class="ck">
+              <div class="ck-label">Est. Gap</div>
+              <div class="ck-val red">−Rp 90.060</div>
+              <div class="ck-unit">⚠️ Belum potong susut</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Modal/kg</div>
+              <div class="ck-val amber">3.743</div>
+              <div class="ck-unit">Rp/kg</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Sisa Restan</div>
+              <div class="ck-val blue">4.097</div>
+              <div class="ck-unit">kg</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div style="font-size:11px;color:#8a96a8;">🚛 Dilak</div>
+            <button class="detail-btn" onclick="bukaLaporan('RAM Lamau','lamau')">Detail →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAM NANGA TAMAN -->
+      <div class="ram-card tipis">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <div>
+              <div class="ram-title">RAM Nanga Taman</div>
+              <div class="ram-meta">📍 RAM Lamau · Grading 5% · Rp 3.850/kg</div>
+            </div>
+            <div class="status-badge">⚠️ Tipis</div>
+          </div>
+          <div class="card-kpi">
+            <div class="ck">
+              <div class="ck-label">Est. Untung</div>
+              <div class="ck-val amber">+Rp 471.940</div>
+              <div class="ck-unit">⚠️ Belum potong susut</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Modal/kg</div>
+              <div class="ck-val amber">3.710</div>
+              <div class="ck-unit">Rp/kg</div>
+            </div>
+            <div class="ck">
+              <div class="ck-label">Sisa Restan</div>
+              <div class="ck-val blue">2.440</div>
+              <div class="ck-unit">kg</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div style="font-size:11px;color:#8a96a8;">🚛 Agus · Ardi</div>
+            <button class="detail-btn" onclick="bukaLaporan('RAM Nanga Taman','taman')">Detail →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">Lamau Persada Mandiri · 8 Mei 2026</div>
+  </div>
+
+  <!-- TAB ARSIP -->
+  <div id="tab-arsip" class="tab-content">
+    <div class="date-select-wrap">
+      <select onchange="loadArsip(this.value)">
+        <option value="">📅 Pilih Tanggal Arsip</option>
+        <option value="2026-05-08">Jumat, 8 Mei 2026</option>
+        <option value="2026-05-06">Rabu, 6 Mei 2026</option>
+      </select>
+    </div>
+    <div id="arsip-content" style="padding:0 14px;">
+      <div style="text-align:center;padding:30px;color:#8a96a8;font-size:13px;">Pilih tanggal untuk melihat arsip laporan</div>
+    </div>
+    <div class="footer">Lamau Persada Mandiri · Arsip Laporan</div>
+  </div>
+
+</div><!-- end app -->
+
+<!-- LAPORAN DETAIL PAGE -->
+<div id="page-laporan">
+  <div class="laporan-back-bar">
+    <button class="laporan-back-btn" onclick="tutupLaporan()">← Kembali</button>
+    <div class="laporan-title-bar" id="laporan-title-text">Laporan RAM</div>
+  </div>
+  <div class="laporan-body" id="laporan-body-content"></div>
+</div>
+
+<!-- MODAL KAS -->
+<div id="modal-kas" class="modal" onclick="closeModalOutside(event,'modal-kas')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-kas')">✕</button>
+    <div class="modal-title">💰 Detail Sisa Kas Usaha</div>
+    <div class="mrow"><span class="ml">Sisa kas kemarin</span><span class="mr">Rp 67.372.000</span></div>
+    <div class="mrow"><span class="ml">+ Uang masuk (Mila 3DT + Brondol)</span><span class="mr green">+ Rp 121.049.000</span></div>
+    <div class="mrow"><span class="ml">− Total pengeluaran</span><span class="mr red">− Rp 141.616.000</span></div>
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Sisa Kas Hari Ini</div><div class="mtv">Rp 46.805.000</div></div>
+  </div>
+</div>
+
+<!-- MODAL PENGELUARAN -->
+<div id="modal-keluar" class="modal" onclick="closeModalOutside(event,'modal-keluar')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-keluar')">✕</button>
+    <div class="modal-title">📊 Detail Pengeluaran Hari Ini</div>
+
+    <!-- 1. PRIBADI -->
+    <div style="background:#F7F9FC;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #eef0f5;">
+      <div class="cat-head" style="color:#2563eb;">👤 Pribadi</div>
+      <div class="cat-item"><span>Bayar Cicilan Laptop Adek</span><span class="cat-item-val">Rp 2.900.000</span></div>
+      <div class="cat-item"><span>TF Besi 15</span><span class="cat-item-val">Rp 664.000</span></div>
+      <div class="cat-item"><span>Bayar Link Mila</span><span class="cat-item-val">Rp 61.000</span></div>
+      <div class="cat-sub"><span>Subtotal</span><span style="color:#2563eb;">Rp 3.625.000</span></div>
+    </div>
+
+    <!-- 2. HUTANG / KEWAJIBAN -->
+    <div style="background:#FFF9E6;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #fcd34d;">
+      <div class="cat-head" style="color:#d97706;">⚠️ Hutang / Kewajiban</div>
+      <div class="cat-item"><span>Pinjaman Riko (Deposit Lamau)</span><span class="cat-item-val">Rp 500.000</span></div>
+      <div class="cat-sub"><span>Subtotal</span><span style="color:#d97706;">Rp 500.000</span></div>
+    </div>
+
+    <!-- 3. DEPOSIT RAM -->
+    <div style="background:#EBF3FF;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #bfdbfe;">
+      <div class="cat-head" style="color:#2563eb;">🏦 Deposit RAM</div>
+      <div class="cat-item"><span>Deposit Mahap</span><span class="cat-item-val">Rp 50.000.000</span></div>
+      <div class="cat-item"><span>Deposit Nata (Lamau)</span><span class="cat-item-val">Rp 25.000.000</span></div>
+      <div class="cat-item"><span>Deposit Taman</span><span class="cat-item-val">Rp 15.000.000</span></div>
+      <div class="cat-sub"><span>Subtotal</span><span style="color:#2563eb;">Rp 90.000.000</span></div>
+    </div>
+
+    <!-- 4. OPERASIONAL -->
+    <div style="background:#F3EEFF;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #d8b4fe;">
+      <div class="cat-head" style="color:#7c3aed;">🏭 Operasional</div>
+      <div class="cat-item"><span>Loper 3 DT</span><span class="cat-item-val">Rp 902.500</span></div>
+      <div class="cat-sub"><span>Subtotal</span><span style="color:#7c3aed;">Rp 902.500</span></div>
+    </div>
+
+    <!-- 5. PEMBAYARAN TBS / BRONDOL -->
+    <div style="background:#E8FAF2;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #bbf7d0;">
+      <div class="cat-head" style="color:#16a34a;">🌿 Pembayaran TBS / Brondol</div>
+      <div class="cat-item"><span>Bayar Moen Semalam (Brondol)</span><span class="cat-item-val">Rp 17.861.000</span></div>
+      <div class="cat-item"><span>Bayar Moen Stlah Loper</span><span class="cat-item-val">Rp 28.428.000</span></div>
+      <div class="cat-sub"><span>Subtotal</span><span style="color:#16a34a;">Rp 46.289.000</span></div>
+    </div>
+
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Total Pengeluaran</div><div class="mtv">Rp 141.316.500</div></div>
+  </div>
+</div>
+
+<!-- MODAL DEPOSIT -->
+<div id="modal-deposit" class="modal" onclick="closeModalOutside(event,'modal-deposit')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-deposit')">✕</button>
+    <div class="modal-title">🏦 Deposit per RAM</div>
+    <div class="dep-item"><div class="dep-name">📍 RAM Lamau</div><div class="dep-val">Rp 25.500.000</div></div>
+    <div class="dep-item"><div class="dep-name">📍 RAM Mahap</div><div class="dep-val">Rp 50.000.000</div></div>
+    <div class="dep-item"><div class="dep-name">📍 RAM Taman</div><div class="dep-val">Rp 15.000.000</div></div>
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Total Deposit Terikat</div><div class="mtv">Rp 90.500.000</div></div>
+  </div>
+</div>
+
+<script>
+// =================== DATA LAPORAN ===================
+const laporanHTML = {
+  mahap: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Mahap</div>
+    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 PAM · Rp 3.500/kg</span>
+      <span class="htag">📦 Grading PAM 4%</span>
+      <span class="htag">🌿 Brondol Lamau Rp 3.900/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi green">
+      <div class="kpi-label">Estimasi Sementara</div>
+      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Hendi+Jum+Agus</div>
+      <div class="kpi-val" style="font-size:15px;">+Rp 4.874.961</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.419</div>
+      <div class="kpi-unit">Rp/kg (inc. ongkos)</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">16.090</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">28.751 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 28.865.000</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 40.000.000</span></div>
+      <div class="row"><span class="rl dim">Pinjaman masuk (wajib kembali)</span><span class="rv">+ Rp 15.000.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 83.865.000</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran (laporan admin)</span><span class="rv red">− Rp 78.160.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit (Kas Aktual)</span><span class="rv green big">Rp 5.705.000</span></div>
+    </div>
+    <div class="kewajiban-box">
+      <div class="kw-title">⚠️ Kewajiban yang Belum Diselesaikan</div>
+      <div class="kw-row"><span style="color:#4a5568;">Pinjaman deposit (wajib kembali)</span><span style="font-weight:800;color:#d97706;">Rp 15.000.000</span></div>
+      <div class="kw-row" style="border-bottom:none;"><span style="color:#4a5568;">Tunggakan buah ke petani</span><span style="font-weight:800;color:#d97706;">Rp 15.066.000</span></div>
+      <div class="kw-total"><span style="font-size:12px;font-weight:700;color:#92400e;">Total Kewajiban</span><span style="font-size:15px;font-weight:800;color:#dc2626;">Rp 30.066.000</span></div>
+    </div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 73.869.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan dibayar</span><span class="rv orange">Rp 15.066.000</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">28.751 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.093 / kg</span></div>
+      <div class="row"><span class="rl dim" style="font-size:10px;">*(TBS saja tanpa tunggakan)</span><span class="rv muted">Rp 2.569 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Total kirim</div></div></div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">29.940</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">5.690</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Total Kirim</div><div class="rb-val">19.540</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">16.090</div><div class="rb-unit">kg di lapangan</div></div>
+    </div>
+    <div style="padding:0 14px 12px;display:flex;gap:8px;">
+      <div style="flex:1;background:#EBF3FF;border-radius:9px;padding:8px 10px;text-align:center;">
+        <div style="font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;margin-bottom:3px;">Ke PAM</div>
+        <div style="font-size:16px;font-weight:800;color:#2563eb;">17.720 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
+        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Hendi + Jum</div>
+      </div>
+      <div style="flex:1;background:#E8FAF2;border-radius:9px;padding:8px 10px;text-align:center;">
+        <div style="font-size:9px;font-weight:700;color:#16a34a;text-transform:uppercase;margin-bottom:3px;">Ke RAM Lamau</div>
+        <div style="font-size:16px;font-weight:800;color:#16a34a;">1.820 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
+        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Agus (brondol)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">PAM +Rp 250/kg ongkos supir · Lamau +Rp 0</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 73.869.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan</span><span class="rv">Rp 15.066.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 800.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Upah Lansir Ropi DS</span><span class="rv">Rp 981.000</span></div>
+      <div class="row"><span class="rl dim">Upah Muat Ropi DS</span><span class="rv">Rp 151.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan Ropi DS</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan Agus</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl strike">Kasbon Jum</span><span class="rv muted">Rp 500.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="row"><span class="rl strike">Minyak Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
+      <div class="row"><span class="rl strike">Minyak Solar Lansir Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 91.117.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 28.751 kg</span><span class="rv" style="color:#4a5568;font-size:13px;font-weight:700;">= Rp 3.169 / kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl dim">+ Ongkos supir PAM Rp 250/kg</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.419 / kg</span></div>
+      <div class="row"><span class="rl dim">+ Ongkos supir Lamau Rp 0/kg</span><span class="rv" style="color:#16a34a;font-size:16px;font-weight:800;">= Rp 3.169 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 5. Penjualan Real -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📊</div><div><div class="sec-title">5. Penjualan Real & Kenaikan kg</div><div class="sec-sub">Bruto timbang pabrik − grading × harga jual</div></div></div>
+    <div class="sec-body">
+      <div class="jual-card">
+        <div class="jual-head"><span class="jual-name">🚛 Hendi</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Kirim dari RAM</span><span>8.490 kg</span></div>
+          <div class="jual-row"><span>Bruto timbang pabrik</span><span>8.710 kg <span class="jual-naik">+220 kg ↑</span></span></div>
+          <div class="jual-row"><span>Grading 4%</span><span>− 348 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">8.362 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 29.265.600</span></div>
+        </div>
+      </div>
+      <div class="jual-card">
+        <div class="jual-head"><span class="jual-name">🚛 Jum</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Kirim dari RAM</span><span>9.230 kg</span></div>
+          <div class="jual-row"><span>Bruto timbang pabrik</span><span>9.520 kg <span class="jual-naik">+290 kg ↑</span></span></div>
+          <div class="jual-row"><span>Grading 4%</span><span>− 381 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">9.139 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 31.987.200</span></div>
+        </div>
+      </div>
+      <div class="jual-card">
+        <div class="jual-head green-h"><span class="jual-name">🚛 Agus</span><span class="jual-dest green-d">🌿 RAM Lamau · Brondol 5%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Brondol dikirim</span><span>1.820 kg</span></div>
+          <div class="jual-row"><span>Grading 5%</span><span>− 91 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#16a34a;">1.729 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.900)</span><span style="color:#16a34a;font-weight:800;">Rp 6.743.100</span></div>
+        </div>
+      </div>
+      <div style="background:#E8FAF2;border:1px solid #bbf7d0;border-radius:9px;padding:9px 12px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:#16a34a;">📈 Total Kenaikan kg ke PAM</div>
+        <div style="font-size:15px;font-weight:800;color:#16a34a;">+510 kg</div>
+      </div>
+      <div class="jual-total" style="margin-top:8px;">
+        <div class="jual-total-label">Total Nilai Penjualan Real</div>
+        <div class="jual-total-val">Rp 67.995.900</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">6. Gap & Keuntungan Real</div><div class="sec-sub">Modal rata²/kg · Gap timbangan · Nilai rupiah</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Modal rata² / kg ke PAM (+ ongkos Rp 250)</span><span class="rv orange">Rp 3.419 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata² / kg ke Lamau (ongkos Rp 0)</span><span class="rv" style="color:#16a34a;">Rp 3.169 / kg</span></div>
+      <div class="row"><span class="rl dim">Harga beli petani (TBS + tunggakan) / kg netto</span><span class="rv">Rp 3.093 / kg</span></div>
+    </div>
+    <div style="padding:0 14px 6px;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a96a8;margin-bottom:8px;">📦 Gap Real per Muatan</div>
+      <!-- Hendi -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Hendi → PAM</span>
+          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+220 kg</strong></span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 8.490 bruto −4% = 8.150,4 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 25.209.187</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 8.710 bruto −4% = 8.361,6 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 29.265.600</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 8.710 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.177.500</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Hendi</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.578.913</span></div>
+        </div>
+      </div>
+      <!-- Jum -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Jum → PAM</span>
+          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+290 kg</strong></span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 9.230 bruto −4% = 8.860,8 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 27.406.454</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 9.520 bruto −4% = 9.139,2 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 31.987.200</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 9.520 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.380.000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Jum</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.900.746</span></div>
+        </div>
+      </div>
+      <!-- Agus -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#E8FAF2;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Agus → RAM Lamau</span>
+          <span style="font-size:10px;font-weight:600;color:#16a34a;">Brondol · Ongkos Rp 0</span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 1.820 bruto −5% = 1.729 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 5.347.797</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual Lamau: 1.820 −5% = 1.729 kg × Rp 3.900</span><span style="font-weight:700;color:#16a34a;">+ Rp 6.743.100</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir & sopoi</span><span style="font-weight:700;color:#8a96a8;">Rp 0</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Agus</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.395.303</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="gap-box">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Total Keuntungan Real Hari Ini</div>
+          <div class="gv">+ Rp 4.874.961</div>
+          <div class="gu">Hendi + Jum + Agus</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Kenaikan timbang PAM</div>
+          <div class="gv">+510 kg</div>
+          <div class="gs">Hendi +220 · Jum +290</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Catatan:</strong> Angka ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 7. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">7. Rekap Supir & Tonase</div><div class="sec-sub">Per supir, tujuan, dan tonase kiriman</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">H</div>
+        <div class="si"><div class="sn">Hendi</div><div class="sd">📍 PAM · Bruto pabrik 8.710 kg (+220 kg)</div></div>
+        <div><div class="st-val">8.490</div><div class="st-unit">kg kirim</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av">J</div>
+        <div class="si"><div class="sn">Jum</div><div class="sd">📍 PAM · Bruto pabrik 9.520 kg (+290 kg)</div></div>
+        <div><div class="st-val">9.230</div><div class="st-unit">kg kirim</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av green">A</div>
+        <div class="si"><div class="sn">Agus</div><div class="sd">🌿 RAM Lamau · Brondol (antar RAM)</div></div>
+        <div><div class="st-val" style="color:#16a34a;">1.820</div><div class="st-unit">kg brondol</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">19.540 kg</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Mahap · 08 Mei 2026</div>
+</div>
+</div><!-- end mahap -->
+
+<!-- ==================== PAGE: LAMAU ==================== -->`,
+  lamau: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Lamau</div>
+    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 Tujuan: Mandor</span>
+      <span class="htag">📦 Grading 5%</span>
+      <span class="htag">💰 Harga Mandor Rp 3.900/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi red">
+      <div class="kpi-label">Estimasi Gap</div>
+      <div class="kpi-label" style="color:#dc2626;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Dilak</div>
+      <div class="kpi-val">−Rp 90 rb</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.743</div>
+      <div class="kpi-unit">Rp/kg</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">4.097</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">2.125 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 2.729.000</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 10.000.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 12.729.000</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran real</span><span class="rv red">− Rp 10.054.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 2.675.000</span></div>
+    </div>
+    <div class="status ok">✅ BALANCE — Sesuai laporan admin</div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 6.554.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">2.125 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.084 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Tambahan + Restan kemarin − Kirim</div></div></div>
+    <div class="tambahan-box">
+      <div><div style="font-size:10px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">📌 Buah Tambahan (Dicatat, Bukan Dibeli)</div>
+      <div style="font-size:13px;font-weight:700;color:#1a2333;">Brondol 1.820 kg — Asal: Mahap</div></div>
+      <span class="dtag">DATA ONLY</span>
+    </div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto TBS</div><div class="rb-val">2.190</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb add"><div class="rb-label">Brondol Mahap</div><div class="rb-val">1.820</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.457</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Kirim Mandor</div><div class="rb-val">2.370</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">4.097</div><div class="rb-unit">kg (admin)</div></div>
+    </div>
+    <div class="status info" style="margin-bottom:12px;">ℹ️ Brondol 1.820 kg dari Mahap tidak dihitung di modal. Dicatat sebagai tambahan fisik saja.</div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 6.554.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Upah Muat Nambah Eko</span><span class="rv">Rp 60.000</span></div>
+      <div class="row"><span class="rl dim">Lansir Agus</span><span class="rv">Rp 70.000</span></div>
+      <div class="row"><span class="rl dim">Rokok Bapak</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Es</span><span class="rv">Rp 10.000</span></div>
+      <div class="row"><span class="rl dim">Dapur Rumah</span><span class="rv">Rp 350.000</span></div>
+      <div class="row"><span class="rl dim">Bensin</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Mak Ara (Operasional)</span><span class="rv">Rp 160.000</span></div>
+      <div class="row"><span class="rl strike">Piutang Dilak + Mkn</span><span class="rv muted">Rp 2.100.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Masuk Modal</span><span class="rv orange big">Rp 7.954.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 2.125 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.743 / kg</span></div>
+    </div>
+    <div class="status warn">⚠️ Total pengeluaran REAL kas: Rp 10.054.000 (termasuk piutang Dilak Rp 2.100.000 exclude dari modal)</div>
+  </div>
+
+  <!-- 5. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ir">📉</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual Mandor − Modal rata-rata/kg</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Harga jual ke Mandor</span><span class="rv blue">Rp 3.900 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.743 / kg</span></div>
+      <div class="row"><span class="rl dim">Gap kasar per kg (jual − modal)</span><span class="rv green">+ Rp 157 / kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl dim">Bruto dikirim ke Mandor</span><span class="rv">2.370 kg</span></div>
+      <div class="row"><span class="rl dim">Netto timbang Mandor (−5%)</span><span class="rv">2.251,5 kg</span></div>
+      <div class="row"><span class="rl dim">Pendapatan (2.251,5 × Rp 3.900)</span><span class="rv blue">Rp 8.780.850</span></div>
+      <div class="row"><span class="rl dim">Modal muatan (2.370 × Rp 3.743)</span><span class="rv orange">Rp 8.870.910</span></div>
+    </div>
+    <div class="gap-box red">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Estimasi Gap Muatan ini</div>
+          <div class="gv">− Rp 90.060</div>
+          <div class="gu">dari 2.370 kg bruto</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Gap per kg netto</div>
+          <div class="gv">− Rp 40 / kg</div>
+          <div class="gs">netto 2.251,5 kg</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Belum final.</strong> Brondol Mahap 1.820 kg belum dihitung di modal. Estimasi belum dikurangi penyusutan.</div>
+    </div>
+  </div>
+
+  <!-- 6. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">D</div>
+        <div class="si"><div class="sn">Dilak (Brondol)</div><div class="sd">📍 Mandor · Ongkos Rp 0</div></div>
+        <div><div class="st-val">2.370</div><div class="st-unit">kg bruto</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">2.370 kg</div></div>
+    </div>
+    <div class="status info">ℹ️ Netto timbang Mandor estimasi: <strong>2.251,5 kg</strong> (bruto 2.370 × 95%)</div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Lamau · 08 Mei 2026</div>
+</div>
+</div><!-- end lamau -->
+
+<!-- ==================== PAGE: NANGA TAMON ==================== -->`,
+  taman: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Nanga Taman</div>
+    <div class="header-date" style="margin-top:6px;">📅 Rabu, 6 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 Tujuan: RAM Lamau</span>
+      <span class="htag">📦 Grading Brondol 5%</span>
+      <span class="htag">💰 Harga RAM Lamau Rp 3.850/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi green">
+      <div class="kpi-label">Estimasi Untung</div>
+      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Agus + Ardi</div>
+      <div class="kpi-val" style="font-size:17px;">+Rp 471.940</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.710</div>
+      <div class="kpi-unit">Rp/kg</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">2.440</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">3.371 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 3.844.400</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 15.000.000</span></div>
+      <div class="row"><span class="rl dim">Pengembalian (Argun)</span><span class="rv">Rp 1.006.820</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 19.851.220</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran</span><span class="rv red">− Rp 13.107.600</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 6.743.620</span></div>
+    </div>
+    <div class="status ok">✅ BALANCE — Sesuai laporan admin <span style="font-weight:400;font-size:11px;">&nbsp;(selisih Rp 20 = pembulatan)</span></div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 11.169.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">3.371 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.313 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Kirim ke tujuan</div></div></div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">3.560</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.046</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Kirim Lamau</div><div class="rb-val">3.166</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">2.440</div><div class="rb-unit">kg di lapangan</div></div>
+    </div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 11.169.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 184.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Upah Lansir Rahmi</span><span class="rv">Rp 104.000</span></div>
+      <div class="row"><span class="rl dim">Upah Bongkar</span><span class="rv">Rp 20.000</span></div>
+      <div class="row"><span class="rl dim">Beli Es</span><span class="rv">Rp 10.000</span></div>
+      <div class="row"><span class="rl dim">Lansir Lamau</span><span class="rv">Rp 70.000</span></div>
+      <div class="row"><span class="rl dim">Uanges Ardi</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Gaji Pak Ali</span><span class="rv">Rp 500.000</span></div>
+      <div class="row"><span class="rl strike">Pinjaman Anton Supir</span><span class="rv muted">Rp 600.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 12.507.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 3.371 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.710 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 5. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual RAM Lamau − Modal rata-rata/kg</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Harga jual ke RAM Lamau</span><span class="rv blue">Rp 3.850 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.710 / kg</span></div>
+    </div>
+    <div class="gap-box">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Keuntungan per kg</div>
+          <div class="gv">+ Rp 140</div>
+          <div class="gu">per kilogram</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Estimasi total hari ini</div>
+          <div class="gv">+Rp 471.940</div>
+          <div class="gs">dari 3.371 kg netto</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Catatan Penting:</strong> Angka keuntungan ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 6. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">A</div>
+        <div class="si"><div class="sn">Agus</div><div class="sd">📍 RAM Lamau · 33,5% dari total</div></div>
+        <div><div class="st-val">1.060</div><div class="st-unit">kg</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av">A</div>
+        <div class="si"><div class="sn">Ardi</div><div class="sd">📍 RAM Lamau · 66,5% dari total</div></div>
+        <div><div class="st-val">2.106</div><div class="st-unit">kg</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">3.166 kg</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Nanga Taman · 06 Mei 2026</div>
+</div>
+</div><!-- end nangatamon -->`
+};
+
+const laporanCSS = `
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+body {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:#F0F4F8;
+  color:#1a2333;
+  min-height:100vh;
+  padding-bottom:30px;
+}
+
+/* ===================== DASHBOARD ===================== */
+.page { display:none; }
+.page.active { display:block; }
+
+.topbar {
+  background:linear-gradient(135deg,#1a2f5e,#243b7a);
+  padding:48px 18px 18px;
+  position:relative;
+  overflow:hidden;
+}
+.topbar::before {
+  content:'';
+  position:absolute;
+  right:-30px;bottom:-30px;
+  width:140px;height:140px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+}
+.co-badge {
+  font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:#7fa8e0;margin-bottom:3px;
+}
+.dash-title {
+  font-size:22px;font-weight:800;color:#fff;
+}
+.topbar-row {
+  display:flex;justify-content:space-between;
+  align-items:center;margin-top:10px;
+}
+.date-badge {
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:20px;padding:5px 12px;
+  font-size:11px;font-weight:600;color:#c8daff;
+}
+.analyst { font-size:11px;font-weight:700;color:#a8c4ff; }
+
+/* Summary strip */
+.summary-strip {
+  margin:12px 14px 0;
+  background:#fff;border-radius:14px;
+  padding:14px 16px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.07);
+  border:1px solid #e8ecf4;
+}
+.strip-label {
+  font-size:10px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:#8a96a8;margin-bottom:12px;
+}
+.strip-row {
+  display:grid;
+  grid-template-columns:1fr 1px 1fr 1px 1fr;
+  align-items:center;
+}
+.strip-item { text-align:center;padding:0 6px; }
+.strip-val {
+  font-size:15px;font-weight:800;
+  color:#1a2333;line-height:1;
+}
+.strip-val.green { color:#16a34a; }
+.strip-val.amber { color:#d97706; }
+.strip-val.blue  { color:#2563eb; }
+.strip-sub { font-size:10px;color:#8a96a8;font-weight:600;margin-top:4px; }
+.strip-div { width:1px;height:36px;background:#e8ecf4; }
+
+.sec-label {
+  font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:#8a96a8;padding:16px 14px 8px;
+}
+
+/* RAM Cards */
+.cards { padding:0 14px;display:flex;flex-direction:column;gap:10px; }
+
+.ram-card {
+  background:#fff;border-radius:16px;
+  border:1px solid #e8ecf4;overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.ram-card:active { transform:scale(0.985); }
+.card-accent { height:4px; }
+.untung .card-accent { background:linear-gradient(90deg,#16a34a,#86efac); }
+.rugi   .card-accent { background:linear-gradient(90deg,#dc2626,#fca5a5); }
+.tipis  .card-accent { background:linear-gradient(90deg,#d97706,#fcd34d); }
+
+.card-body { padding:13px 14px 14px; }
+.card-header {
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:12px;
+}
+.ram-title { font-size:17px;font-weight:800;color:#1a2333; }
+.ram-meta  { font-size:11px;color:#8a96a8;font-weight:600;margin-top:3px; }
+
+.status-badge {
+  font-size:11px;font-weight:700;
+  padding:4px 10px;border-radius:20px;
+  white-space:nowrap;flex-shrink:0;
+}
+.untung .status-badge { background:#E8FAF2;color:#16a34a;border:1px solid #bbf7d0; }
+.rugi   .status-badge { background:#FFF0F0;color:#dc2626;border:1px solid #fecaca; }
+.tipis  .status-badge { background:#FFF9E6;color:#d97706;border:1px solid #fcd34d; }
+
+.card-kpi {
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:7px;margin-bottom:12px;
+}
+.ck {
+  background:#F7F9FC;border-radius:10px;
+  padding:10px 8px;text-align:center;
+  border:1px solid #eef0f5;
+}
+.ck-label {
+  font-size:9px;font-weight:700;
+  letter-spacing:0.6px;text-transform:uppercase;
+  color:#8a96a8;margin-bottom:5px;line-height:1.3;
+}
+.ck-val { font-size:15px;font-weight:800;line-height:1;color:#1a2333; }
+.ck-val.green { color:#16a34a; }
+.ck-val.red   { color:#dc2626; }
+.ck-val.amber { color:#d97706; }
+.ck-val.blue  { color:#2563eb; }
+.ck-unit { font-size:9px;color:#8a96a8;font-weight:600;margin-top:3px;line-height:1.3; }
+
+.card-footer {
+  display:flex;justify-content:space-between;
+  align-items:center;
+  padding-top:11px;border-top:1px solid #f0f2f6;
+}
+.supir-chips { display:flex;gap:5px;flex-wrap:wrap; }
+.chip {
+  font-size:11px;font-weight:600;
+  padding:4px 9px;border-radius:20px;
+  background:#EBF3FF;color:#2563eb;
+  border:1px solid #bfdbfe;
+}
+.detail-btn {
+  font-size:12px;font-weight:700;color:#2563eb;
+  display:flex;align-items:center;gap:4px;
+  background:#EBF3FF;padding:6px 12px;
+  border-radius:20px;border:1px solid #bfdbfe;
+}
+
+/* Rekap box */
+.rekap-box {
+  margin:10px 14px 0;background:#fff;
+  border-radius:14px;border:1px solid #e8ecf4;
+  padding:14px 16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.rekap-title {
+  font-size:10px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:#8a96a8;margin-bottom:10px;
+}
+.rekap-row {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:8px 0;
+  border-bottom:1px solid #f5f6f8;font-size:13px;
+}
+.rekap-row:last-child { border-bottom:none; }
+.rl2 { color:#4a5568;font-weight:500; }
+.rv2 { font-weight:700; }
+.rv2.green { color:#16a34a; }
+.rv2.red   { color:#dc2626; }
+.rv2.blue  { color:#2563eb; }
+.rv2.amber { color:#d97706; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity:0;transform:translateY(14px); }
+  to   { opacity:1;transform:translateY(0); }
+}
+.summary-strip { animation:fadeUp 0.35s ease 0.05s both; }
+.cards .ram-card:nth-child(1) { animation:fadeUp 0.35s ease 0.12s both; }
+.cards .ram-card:nth-child(2) { animation:fadeUp 0.35s ease 0.2s both; }
+.cards .ram-card:nth-child(3) { animation:fadeUp 0.35s ease 0.28s both; }
+.rekap-box { animation:fadeUp 0.35s ease 0.34s both; }
+
+/* ===================== LAPORAN FULL ===================== */
+.lap-wrap {
+  max-width:480px;margin:0 auto;
+  padding:14px 14px 24px;
+}
+
+/* Back button */
+.back-btn {
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#1a2f5e,#243b7a);
+  color:#c8daff;font-size:13px;font-weight:700;
+  padding:10px 16px;border-radius:12px;
+  margin-bottom:10px;cursor:pointer;
+  border:none;font-family:'Plus Jakarta Sans',sans-serif;
+  width:100%;
+}
+.back-btn:active { opacity:0.85; }
+
+.header {
+  background:linear-gradient(135deg,#1a2f5e,#243b7a);
+  border-radius:16px;padding:18px 18px 16px;
+  margin-bottom:10px;position:relative;overflow:hidden;
+}
+.header::before {
+  content:'';position:absolute;
+  right:-20px;bottom:-20px;
+  width:120px;height:120px;border-radius:50%;
+  background:rgba(255,255,255,0.05);
+}
+.co-name {
+  font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:#7fa8e0;margin-bottom:3px;
+}
+.ram-name { font-size:22px;font-weight:800;color:#fff;line-height:1.1; }
+.header-date { font-size:12px;color:#a8c4ff;font-weight:600; }
+.header-tags { display:flex;gap:5px;flex-wrap:wrap;margin-top:8px; }
+.htag {
+  background:rgba(255,255,255,0.12);color:#c8daff;
+  font-size:10px;font-weight:600;padding:3px 9px;
+  border-radius:20px;border:1px solid rgba(255,255,255,0.15);
+}
+
+.kpi-row {
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:8px;margin-bottom:10px;
+}
+.kpi {
+  background:#fff;border-radius:12px;padding:11px 10px;
+  text-align:center;box-shadow:0 1px 6px rgba(0,0,0,0.06);
+  border-top:3px solid #e5e9f0;
+}
+.kpi.green  { border-top-color:#16a34a; }
+.kpi.orange { border-top-color:#d97706; }
+.kpi.blue   { border-top-color:#2563eb; }
+.kpi.red    { border-top-color:#dc2626; }
+.kpi-label {
+  font-size:9px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.8px;color:#8a96a8;margin-bottom:4px;
+}
+.kpi-val { font-size:20px;font-weight:800;line-height:1; }
+.kpi.green  .kpi-val { color:#16a34a; }
+.kpi.orange .kpi-val { color:#d97706; }
+.kpi.blue   .kpi-val { color:#2563eb; }
+.kpi.red    .kpi-val { color:#dc2626; }
+.kpi-unit { font-size:10px;color:#8a96a8;margin-top:2px; }
+
+.section {
+  background:#fff;border-radius:14px;
+  margin-bottom:10px;overflow:hidden;
+  box-shadow:0 1px 6px rgba(0,0,0,0.05);
+}
+.sec-head {
+  display:flex;align-items:center;gap:9px;
+  padding:11px 14px 10px;
+  border-bottom:1px solid #f0f2f6;
+}
+.sec-icon {
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;
+}
+.ib { background:#EBF3FF; }
+.ig { background:#E8FAF2; }
+.io { background:#FFF4E6; }
+.ip { background:#F3EEFF; }
+.it { background:#E6F9F7; }
+.ir { background:#FFF0F0; }
+.sec-title { font-size:13px;font-weight:700;color:#1a2333; }
+.sec-sub   { font-size:11px;color:#8a96a8;margin-top:1px; }
+.sec-body  { padding:10px 14px; }
+
+.row {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:7px 0;
+  border-bottom:1px solid #f5f6f8;
+}
+.row:last-child { border-bottom:none; }
+.rl     { font-size:12px;color:#4a5568;font-weight:500; }
+.rl.dim { color:#9aa3b0;font-size:11px; }
+.rl.strike { text-decoration:line-through;color:#b0b8c6;font-size:11px; }
+.rv          { font-size:12px;font-weight:700;color:#1a2333; }
+.rv.green    { color:#16a34a; }
+.rv.blue     { color:#2563eb; }
+.rv.orange   { color:#d97706; }
+.rv.red      { color:#dc2626; }
+.rv.muted    { color:#b0b8c6;font-weight:500; }
+.rv.big      { font-size:15px; }
+
+.divline {
+  height:1px;
+  background:linear-gradient(90deg,#e0e5ef,transparent);
+  margin:6px 0;
+}
+
+.status {
+  margin:0 14px 12px;padding:9px 12px;
+  border-radius:9px;font-size:12px;font-weight:600;
+  display:flex;align-items:flex-start;gap:7px;
+}
+.status.ok   { background:#E8FAF2;color:#16a34a;border:1px solid #bbf7d0; }
+.status.warn { background:#FFF9E6;color:#d97706;border:1px solid #fcd34d; }
+.status.info { background:#EBF3FF;color:#2563eb;border:1px solid #bfdbfe; }
+.status.bad  { background:#FFF0F0;color:#dc2626;border:1px solid #fecaca; }
+
+/* Restan flow */
+.restan {
+  display:flex;align-items:center;justify-content:center;
+  gap:5px;padding:12px 10px;flex-wrap:wrap;
+}
+.rb {
+  text-align:center;background:#f8f9fc;
+  border-radius:10px;padding:9px 10px;
+  border:1px solid #eef0f5;min-width:68px;
+}
+.rb-label { font-size:9px;color:#8a96a8;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px; }
+.rb-val   { font-size:16px;font-weight:800;color:#2563eb; }
+.rb-unit  { font-size:10px;color:#8a96a8; }
+.rb.res   { background:#FFF9E6;border-color:#fcd34d; }
+.rb.res .rb-label { color:#d97706; }
+.rb.res .rb-val   { color:#d97706;font-size:20px; }
+.rb.add   { background:#E8FAF2;border-color:#bbf7d0; }
+.rb.add .rb-label { color:#16a34a; }
+.rb.add .rb-val   { color:#16a34a; }
+.op { font-size:18px;font-weight:700;color:#c8d0dc; }
+
+/* Gap boxes */
+.gap-box {
+  margin:0 14px 14px;
+  background:linear-gradient(135deg,#16a34a,#15803d);
+  border-radius:12px;padding:14px 16px;
+}
+.gap-box.red {
+  background:linear-gradient(135deg,#dc2626,#b91c1c);
+}
+.gap-box.warn {
+  background:linear-gradient(135deg,#b45309,#92400e);
+}
+.gap-top {
+  display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:10px;
+  flex-wrap:wrap;gap:8px;
+}
+.gap-left .gl  { font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:3px; }
+.gap-left .gv  { font-size:28px;font-weight:800;color:#fff;line-height:1; }
+.gap-left .gu  { font-size:11px;color:rgba(255,255,255,0.6); }
+.gap-right     { text-align:right; }
+.gap-right .gl { font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:3px; }
+.gap-right .gv { font-size:18px;font-weight:800;color:#fff; }
+.gap-right .gs { font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px; }
+.gap-note {
+  background:rgba(0,0,0,0.15);border-radius:8px;
+  padding:8px 10px;font-size:11px;
+  color:rgba(255,255,255,0.8);line-height:1.5;
+  border-left:3px solid rgba(255,255,255,0.3);
+}
+.gap-note strong { color:#fff; }
+
+/* Supir */
+.supir-list { padding:8px 14px 12px; }
+.supir-row {
+  display:flex;align-items:center;gap:10px;
+  padding:9px 11px;background:#f8f9fc;
+  border-radius:10px;margin-bottom:7px;
+  border:1px solid #eef0f5;
+}
+.supir-row:last-child { margin-bottom:0; }
+.av {
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:#fff;font-weight:800;font-size:15px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.av.green { background:linear-gradient(135deg,#16a34a,#15803d); }
+.si  { flex:1; }
+.sn  { font-size:13px;font-weight:700;color:#1a2333; }
+.sd  { font-size:11px;color:#8a96a8;margin-top:1px; }
+.st-val  { font-size:16px;font-weight:800;color:#2563eb; }
+.st-unit { font-size:10px;color:#8a96a8;text-align:right; }
+.supir-total {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:10px 12px;
+  background:#1a2f5e;border-radius:10px;margin-top:8px;
+}
+.supir-total-label { font-size:12px;font-weight:600;color:#a8c4ff; }
+.supir-total-val   { font-size:16px;font-weight:800;color:#fff; }
+
+/* Tags */
+.xtag,.ptag {
+  font-size:10px;background:#FFF0F0;color:#dc2626;
+  border:1px solid #fecaca;padding:2px 7px;
+  border-radius:20px;font-weight:600;white-space:nowrap;
+}
+.dtag {
+  font-size:10px;background:#E8FAF2;color:#16a34a;
+  border:1px solid #bbf7d0;padding:2px 7px;
+  border-radius:20px;font-weight:600;white-space:nowrap;
+}
+
+/* Kewajiban box */
+.kewajiban-box {
+  margin:0 14px 12px;background:#FFF9E6;
+  border:1px solid #fcd34d;border-radius:12px;padding:12px 14px;
+}
+.kw-title {
+  font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:1px;color:#d97706;margin-bottom:8px;
+}
+.kw-row {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:5px 0;
+  border-bottom:1px solid #fde68a;font-size:12px;
+}
+.kw-row:last-of-type { border-bottom:none; }
+.kw-total {
+  display:flex;justify-content:space-between;
+  align-items:center;padding-top:6px;margin-top:6px;
+  border-top:1px solid #fcd34d;
+}
+
+/* Penjualan per supir */
+.jual-card {
+  background:#f8f9fc;border-radius:10px;
+  border:1px solid #eef0f5;margin-bottom:8px;overflow:hidden;
+}
+.jual-head {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 12px;background:#EBF3FF;border-bottom:1px solid #dce8f8;
+}
+.jual-head.green-h { background:#E8FAF2;border-bottom-color:#c6f0dc; }
+.jual-name { font-size:12px;font-weight:700;color:#1a2333; }
+.jual-dest { font-size:10px;color:#2563eb;font-weight:600; }
+.jual-dest.green-d { color:#16a34a; }
+.jual-body { padding:8px 12px; }
+.jual-row {
+  display:flex;justify-content:space-between;
+  font-size:11px;padding:3px 0;color:#4a5568;
+}
+.jual-row span:last-child { font-weight:700;color:#1a2333; }
+.jual-naik {
+  display:inline-block;background:#d1fae5;color:#16a34a;
+  font-size:10px;font-weight:700;padding:2px 7px;
+  border-radius:20px;margin-left:5px;
+}
+.jual-total {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 12px;background:#1a2f5e;border-radius:10px;margin-top:4px;
+}
+.jual-total-label { font-size:11px;font-weight:600;color:#a8c4ff; }
+.jual-total-val   { font-size:14px;font-weight:800;color:#fff; }
+
+/* Footer */
+.footer {
+  text-align:center;padding-top:10px;
+  font-size:10px;color:#b0b8c6;
+  font-weight:500;letter-spacing:0.5px;
+}
+
+/* Tambahan box */
+.tambahan-box {
+  margin:0 14px 10px;background:#E8FAF2;
+  border:1px solid #bbf7d0;border-radius:10px;
+  padding:10px 12px;display:flex;
+  justify-content:space-between;align-items:center;
+}
+`;
+
+// =================== FUNCTIONS ===================
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function bukaLaporan(nama, key) {
+  document.getElementById('laporan-title-text').textContent = nama;
+  const content = laporanHTML[key] || '<p style="padding:20px;color:#dc2626;">Data tidak ditemukan</p>';
+  document.getElementById('laporan-body-content').innerHTML =
+    '<style>' + laporanCSS + '</style><div class="lap-wrap">' + content + '</div>';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('page-laporan').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+function tutupLaporan() {
+  document.getElementById('page-laporan').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+function openModal(id) {
+  document.getElementById(id).classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e, id) {
+  if (e.target.classList.contains('modal')) closeModal(id);
+}
+
+function loadArsip(dateKey) {
+  if (!dateKey) return;
+  const content = document.getElementById('arsip-content');
+  content.innerHTML = '<div style="text-align:center;padding:20px;color:#8a96a8;font-size:12px;">📅 Arsip ' + dateKey + ' — Laporan belum tersedia. Upload laporan untuk tanggal ini dulu.</div>';
+}
+</script>
+</body>
+</html>
