@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -6,29 +7,12 @@
 <title>Dashboard Lamau Persada Mandiri</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: #F0F4F8;
-  color: #1a2333;
-  min-height: 100vh;
-}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:'Plus Jakarta Sans',sans-serif; background:#F0F4F8; color:#1a2333; min-height:100vh; }
 
 /* TOPBAR */
-.topbar {
-  background: linear-gradient(135deg, #1a2f5e, #243b7a);
-  padding: 48px 18px 20px;
-  position: relative;
-  overflow: hidden;
-}
-.topbar::before {
-  content: '';
-  position: absolute;
-  right: -30px; bottom: -30px;
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.05);
-}
+.topbar { background:linear-gradient(135deg,#1a2f5e,#243b7a); padding:48px 18px 20px; position:relative; overflow:hidden; }
+.topbar::before { content:’’; position:absolute; right:-30px; bottom:-30px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,0.05); }
 .co-badge { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#7fa8e0; margin-bottom:3px; }
 .dash-title { font-size:24px; font-weight:800; color:#fff; margin-bottom:12px; }
 .topbar-row { display:flex; justify-content:space-between; align-items:center; }
@@ -36,40 +20,19 @@ body {
 .analyst { font-size:11px; font-weight:700; color:#a8c4ff; }
 
 /* TAB NAV */
-.tab-nav {
-  display:flex; background:#fff;
-  border-bottom:2px solid #e8ecf4;
-  position:sticky; top:0; z-index:100;
-}
-.tab-btn {
-  flex:1; padding:14px 8px;
-  border:none; background:none;
-  font-size:11px; font-weight:700;
-  color:#8a96a8; cursor:pointer;
-  border-bottom:3px solid transparent;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  text-transform:uppercase; letter-spacing:0.6px;
-  transition:all 0.25s;
-}
+.tab-nav { display:flex; background:#fff; border-bottom:2px solid #e8ecf4; position:sticky; top:0; z-index:100; }
+.tab-btn { flex:1; padding:14px 8px; border:none; background:none; font-size:11px; font-weight:700; color:#8a96a8; cursor:pointer; border-bottom:3px solid transparent; font-family:‘Plus Jakarta Sans’,sans-serif; text-transform:uppercase; letter-spacing:0.6px; transition:all 0.25s; }
 .tab-btn.active { color:#2563eb; border-bottom-color:#2563eb; }
 
 /* TAB CONTENT */
 .tab-content { display:none; padding-bottom:30px; }
 .tab-content.active { display:block; animation:fadeUp 0.3s ease; }
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(10px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
 /* KAS CARDS */
 .kas-section { padding:12px 14px 0; }
 .kas-cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
-.kas-card {
-  background:#fff; border-radius:14px; padding:14px;
-  box-shadow:0 1px 6px rgba(0,0,0,0.05);
-  border:1px solid #e8ecf4; cursor:pointer;
-  transition:transform 0.15s;
-}
+.kas-card { background:#fff; border-radius:14px; padding:14px; box-shadow:0 1px 6px rgba(0,0,0,0.05); border:1px solid #e8ecf4; cursor:pointer; transition:transform 0.15s; }
 .kas-card:active { transform:scale(0.97); }
 .kas-card.full { grid-column:1/-1; }
 .kas-icon { font-size:24px; margin-bottom:6px; }
@@ -80,27 +43,12 @@ body {
 .kas-val.blue  { color:#2563eb; }
 .kas-sub { font-size:10px; color:#8a96a8; font-weight:600; }
 
-/* DATE SELECT */
-.date-select-wrap { padding:12px 14px; }
-.date-select-wrap select {
-  width:100%; padding:10px 12px;
-  border:1px solid #e8ecf4; border-radius:10px;
-  font-size:13px; font-family:'Plus Jakarta Sans',sans-serif;
-  color:#1a2333; background:#fff;
-  box-shadow:0 1px 6px rgba(0,0,0,0.05);
-}
-
 /* SEC LABEL */
 .sec-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a96a8; padding:14px 14px 8px; }
 
 /* RAM CARDS */
 .ram-cards { padding:0 14px; display:flex; flex-direction:column; gap:10px; padding-bottom:10px; }
-.ram-card {
-  background:#fff; border-radius:16px;
-  border:1px solid #e8ecf4; overflow:hidden;
-  cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  transition:transform 0.15s;
-}
+.ram-card { background:#fff; border-radius:16px; border:1px solid #e8ecf4; overflow:hidden; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.05); transition:transform 0.15s; }
 .ram-card:active { transform:scale(0.985); }
 .card-accent { height:4px; }
 .untung .card-accent { background:linear-gradient(90deg,#16a34a,#86efac); }
@@ -124,55 +72,28 @@ body {
 .ck-val.blue  { color:#2563eb; }
 .ck-unit { font-size:9px; color:#8a96a8; font-weight:600; margin-top:3px; }
 .card-footer { display:flex; justify-content:space-between; align-items:center; padding-top:11px; border-top:1px solid #f0f2f6; }
-.detail-btn {
-  font-size:12px; font-weight:700; color:#2563eb;
-  background:#EBF3FF; padding:6px 14px; border-radius:20px;
-  border:1px solid #bfdbfe; cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
+.detail-btn { font-size:12px; font-weight:700; color:#2563eb; background:#EBF3FF; padding:6px 14px; border-radius:20px; border:1px solid #bfdbfe; cursor:pointer; font-family:‘Plus Jakarta Sans’,sans-serif; }
 .detail-btn:active { transform:scale(0.95); }
 
-/* LAPORAN DETAIL PAGE */
+/* ARSIP DATE SELECT */
+.arsip-select-wrap { padding:12px 14px; }
+.arsip-select-wrap select { width:100%; padding:12px 14px; border:1px solid #e8ecf4; border-radius:12px; font-size:13px; font-weight:600; font-family:‘Plus Jakarta Sans’,sans-serif; color:#1a2333; background:#fff; box-shadow:0 1px 6px rgba(0,0,0,0.05); cursor:pointer; }
+
+/* LAPORAN DETAIL */
 #page-laporan { display:none; }
 #page-laporan.active { display:block; }
-.laporan-back-bar {
-  background: linear-gradient(135deg,#1a2f5e,#243b7a);
-  padding:12px 14px;
-  display:flex; align-items:center; gap:10px;
-  position:sticky; top:0; z-index:100;
-}
-.laporan-back-btn {
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.25);
-  color:#fff; padding:7px 14px;
-  border-radius:20px; font-size:12px; font-weight:700;
-  cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
-}
+.laporan-back-bar { background:linear-gradient(135deg,#1a2f5e,#243b7a); padding:12px 14px; display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:100; }
+.laporan-back-btn { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:#fff; padding:7px 14px; border-radius:20px; font-size:12px; font-weight:700; cursor:pointer; font-family:‘Plus Jakarta Sans’,sans-serif; }
 .laporan-title-bar { font-size:14px; font-weight:700; color:#fff; }
-
-/* LAPORAN CONTENT — embed CSS dari file laporan */
 .laporan-body { background:#F0F4F8; padding-bottom:20px; }
 
 /* MODAL */
-.modal {
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.5); z-index:200;
-  animation:fadeIn 0.2s ease;
-}
-.modal.show { display:flex; align-items:flex-end; }
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; }
+.modal.show { display:flex; align-items:flex-end; animation:fadeIn 0.2s ease; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-.modal-box {
-  background:#fff; width:100%; border-radius:24px 24px 0 0;
-  padding:24px 18px 30px; max-height:88vh; overflow-y:auto;
-  animation:slideUp 0.28s ease;
-}
+.modal-box { background:#fff; width:100%; border-radius:24px 24px 0 0; padding:24px 18px 30px; max-height:88vh; overflow-y:auto; animation:slideUp 0.28s ease; }
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-.modal-close {
-  float:right; background:#f0f2f6; border:none;
-  width:30px; height:30px; border-radius:50%;
-  font-size:16px; cursor:pointer; color:#8a96a8;
-  display:flex; align-items:center; justify-content:center;
-}
+.modal-close { float:right; background:#f0f2f6; border:none; width:30px; height:30px; border-radius:50%; font-size:16px; cursor:pointer; color:#8a96a8; display:flex; align-items:center; justify-content:center; }
 .modal-title { font-size:17px; font-weight:800; color:#1a2333; margin-bottom:16px; }
 .mrow { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #f0f2f6; font-size:13px; }
 .mrow:last-child { border-bottom:none; }
@@ -182,10 +103,7 @@ body {
 .mr.red   { color:#dc2626; }
 .mr.blue  { color:#2563eb; }
 .mdiv { height:1px; background:linear-gradient(90deg,#e0e5ef,transparent); margin:8px 0; }
-.mtotal {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 14px; background:#1a2f5e; border-radius:10px; margin-top:12px;
-}
+.mtotal { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:#1a2f5e; border-radius:10px; margin-top:12px; }
 .mtl { font-size:12px; font-weight:600; color:#a8c4ff; }
 .mtv { font-size:16px; font-weight:800; color:#fff; }
 .cat-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8a96a8; margin-bottom:8px; margin-top:4px; }
@@ -196,52 +114,62 @@ body {
 .dep-name { font-size:12px; font-weight:700; color:#1a2333; }
 .dep-val  { font-size:14px; font-weight:800; color:#2563eb; }
 
+/* KOSONG STATE */
+.empty-state { text-align:center; padding:40px 20px; color:#8a96a8; }
+.empty-state .ei { font-size:40px; margin-bottom:12px; }
+.empty-state p { font-size:13px; font-weight:600; }
+
 /* FOOTER */
 .footer { text-align:center; padding:16px; font-size:10px; color:#b0b8c6; font-weight:500; letter-spacing:0.5px; }
 </style>
+
 </head>
 <body>
 
-<!-- MAIN DASHBOARD APP -->
+<!-- APP WRAPPER -->
+
 <div id="app">
 
   <!-- TOPBAR -->
+
   <div class="topbar">
     <div class="co-badge">Lamau Persada Mandiri</div>
     <div class="dash-title">Dashboard Usaha</div>
     <div class="topbar-row">
-      <div class="date-badge">📅 9 Mei 2026</div>
+      <div class="date-badge">📅 <span id="topbarDate">-</span></div>
       <div class="analyst">Rizky Karman</div>
     </div>
   </div>
 
   <!-- TAB NAV -->
+
   <div class="tab-nav">
     <button class="tab-btn active" onclick="showTab('kas',this)">💰 Kas</button>
     <button class="tab-btn" onclick="showTab('ram',this)">📋 Laporan RAM</button>
     <button class="tab-btn" onclick="showTab('arsip',this)">📅 Arsip</button>
   </div>
 
-  <!-- TAB KAS -->
+  <!-- ===== TAB KAS ===== -->
+
   <div id="tab-kas" class="tab-content active">
     <div class="kas-section">
       <div class="kas-cards">
         <div class="kas-card" onclick="openModal('modal-kas')">
           <div class="kas-icon">💰</div>
           <div class="kas-label">Sisa Kas Usaha</div>
-          <div class="kas-val green" id="valSisaKas">Rp 46.805.000</div>
+          <div class="kas-val green" id="valSisaKas">-</div>
           <div class="kas-sub">Tap untuk detail ›</div>
         </div>
         <div class="kas-card" onclick="openModal('modal-keluar')">
           <div class="kas-icon">📊</div>
           <div class="kas-label">Pengeluaran Hari Ini</div>
-          <div class="kas-val red" id="valKeluar">Rp 141.616.000</div>
+          <div class="kas-val red" id="valKeluar">-</div>
           <div class="kas-sub">Tap untuk detail ›</div>
         </div>
         <div class="kas-card full" onclick="openModal('modal-deposit')">
           <div class="kas-icon">🏦</div>
           <div class="kas-label">Deposit Usaha — Terikat per RAM</div>
-          <div class="kas-val blue" id="valDeposit">Rp 90.500.000</div>
+          <div class="kas-val blue" id="valDeposit">-</div>
           <div class="kas-sub">3 RAM · Tap untuk breakdown ›</div>
         </div>
       </div>
@@ -249,812 +177,134 @@ body {
     <div class="footer">Lamau Persada Mandiri · Dashboard Usaha</div>
   </div>
 
-  <!-- TAB RAM -->
+  <!-- ===== TAB RAM ===== -->
+
   <div id="tab-ram" class="tab-content">
     <div class="sec-label">📋 Laporan RAM Harian</div>
-    <div class="ram-cards">
-
-      <!-- RAM MAHAP -->
-      <div class="ram-card untung">
-        <div class="card-accent"></div>
-        <div class="card-body">
-          <div class="card-header">
-            <div>
-              <div class="ram-title">RAM Mahap</div>
-              <div class="ram-meta">📍 PAM · Grading 4% · Rp 3.500/kg</div>
-            </div>
-            <div class="status-badge">✅ Untung</div>
-          </div>
-          <div class="card-kpi">
-            <div class="ck">
-              <div class="ck-label">Est. Untung</div>
-              <div class="ck-val green">+Rp 4.874.961</div>
-              <div class="ck-unit">⚠️ Belum potong susut</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Modal/kg</div>
-              <div class="ck-val amber">3.419</div>
-              <div class="ck-unit">Rp/kg (inc. ongkos)</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Sisa Restan</div>
-              <div class="ck-val blue">16.090</div>
-              <div class="ck-unit">kg</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div style="font-size:11px;color:#8a96a8;">🚛 Hendi · Jum · Agus</div>
-            <button class="detail-btn" onclick="bukaLaporan('RAM Mahap','mahap')">Detail →</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RAM LAMAU -->
-      <div class="ram-card rugi">
-        <div class="card-accent"></div>
-        <div class="card-body">
-          <div class="card-header">
-            <div>
-              <div class="ram-title">RAM Lamau</div>
-              <div class="ram-meta">📍 Mandor · Grading 5% · Rp 3.900/kg</div>
-            </div>
-            <div class="status-badge">❌ Rugi</div>
-          </div>
-          <div class="card-kpi">
-            <div class="ck">
-              <div class="ck-label">Est. Gap</div>
-              <div class="ck-val red">−Rp 90.060</div>
-              <div class="ck-unit">⚠️ Belum potong susut</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Modal/kg</div>
-              <div class="ck-val amber">3.743</div>
-              <div class="ck-unit">Rp/kg</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Sisa Restan</div>
-              <div class="ck-val blue">4.097</div>
-              <div class="ck-unit">kg</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div style="font-size:11px;color:#8a96a8;">🚛 Dilak</div>
-            <button class="detail-btn" onclick="bukaLaporan('RAM Lamau','lamau')">Detail →</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RAM NANGA TAMAN -->
-      <div class="ram-card tipis">
-        <div class="card-accent"></div>
-        <div class="card-body">
-          <div class="card-header">
-            <div>
-              <div class="ram-title">RAM Nanga Taman</div>
-              <div class="ram-meta">📍 RAM Lamau · Grading 5% · Rp 3.850/kg</div>
-            </div>
-            <div class="status-badge">⚠️ Tipis</div>
-          </div>
-          <div class="card-kpi">
-            <div class="ck">
-              <div class="ck-label">Est. Untung</div>
-              <div class="ck-val amber">+Rp 471.940</div>
-              <div class="ck-unit">⚠️ Belum potong susut</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Modal/kg</div>
-              <div class="ck-val amber">3.710</div>
-              <div class="ck-unit">Rp/kg</div>
-            </div>
-            <div class="ck">
-              <div class="ck-label">Sisa Restan</div>
-              <div class="ck-val blue">2.440</div>
-              <div class="ck-unit">kg</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div style="font-size:11px;color:#8a96a8;">🚛 Agus · Ardi</div>
-            <button class="detail-btn" onclick="bukaLaporan('RAM Nanga Taman','taman')">Detail →</button>
-          </div>
-        </div>
-      </div>
-
+    <div class="ram-cards" id="ramCards">
+      <div class="empty-state"><div class="ei">📋</div><p>Pilih tanggal di tab Arsip<br>untuk melihat laporan RAM</p></div>
     </div>
-    <div class="footer">Lamau Persada Mandiri · 8 Mei 2026</div>
+    <div class="footer" id="ramFooter">Lamau Persada Mandiri</div>
   </div>
 
-  <!-- TAB ARSIP -->
+  <!-- ===== TAB ARSIP ===== -->
+
   <div id="tab-arsip" class="tab-content">
-    <div class="date-select-wrap">
-      <select onchange="loadArsip(this.value)">
+    <div class="arsip-select-wrap">
+      <select id="arsipSelect" onchange="loadTanggal(this.value)">
         <option value="">📅 Pilih Tanggal Arsip</option>
-        <option value="2026-05-08">Jumat, 8 Mei 2026</option>
-        <option value="2026-05-06">Rabu, 6 Mei 2026</option>
       </select>
     </div>
-    <div id="arsip-content" style="padding:0 14px;">
-      <div style="text-align:center;padding:30px;color:#8a96a8;font-size:13px;">Pilih tanggal untuk melihat arsip laporan</div>
-    </div>
+    <div id="arsipInfo" style="padding:0 14px 10px;"></div>
     <div class="footer">Lamau Persada Mandiri · Arsip Laporan</div>
   </div>
 
 </div><!-- end app -->
 
-<!-- LAPORAN DETAIL PAGE -->
+<!-- ===== HALAMAN LAPORAN DETAIL ===== -->
+
 <div id="page-laporan">
   <div class="laporan-back-bar">
     <button class="laporan-back-btn" onclick="tutupLaporan()">← Kembali</button>
-    <div class="laporan-title-bar" id="laporan-title-text">Laporan RAM</div>
+    <div class="laporan-title-bar" id="laporanTitleBar">Laporan RAM</div>
   </div>
-  <div class="laporan-body" id="laporan-body-content"></div>
+  <div class="laporan-body" id="laporanBodyContent"></div>
 </div>
 
-<!-- MODAL KAS -->
+<!-- ===== MODAL KAS ===== -->
+
 <div id="modal-kas" class="modal" onclick="closeModalOutside(event,'modal-kas')">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-kas')">✕</button>
     <div class="modal-title">💰 Detail Sisa Kas Usaha</div>
-    <div class="mrow"><span class="ml">Sisa kas kemarin</span><span class="mr">Rp 67.372.000</span></div>
-    <div class="mrow"><span class="ml">+ Uang masuk (Mila 3DT + Brondol)</span><span class="mr green">+ Rp 121.049.000</span></div>
-    <div class="mrow"><span class="ml">− Total pengeluaran</span><span class="mr red">− Rp 141.616.000</span></div>
-    <div class="mdiv"></div>
-    <div class="mtotal"><div class="mtl">Sisa Kas Hari Ini</div><div class="mtv">Rp 46.805.000</div></div>
+    <div id="modalKasContent"></div>
   </div>
 </div>
 
-<!-- MODAL PENGELUARAN -->
+<!-- ===== MODAL PENGELUARAN ===== -->
+
 <div id="modal-keluar" class="modal" onclick="closeModalOutside(event,'modal-keluar')">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-keluar')">✕</button>
     <div class="modal-title">📊 Detail Pengeluaran Hari Ini</div>
-
-    <!-- 1. PRIBADI -->
-    <div style="background:#F7F9FC;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #eef0f5;">
-      <div class="cat-head" style="color:#2563eb;">👤 Pribadi</div>
-      <div class="cat-item"><span>Bayar Cicilan Laptop Adek</span><span class="cat-item-val">Rp 2.900.000</span></div>
-      <div class="cat-item"><span>TF Besi 15</span><span class="cat-item-val">Rp 664.000</span></div>
-      <div class="cat-item"><span>Bayar Link Mila</span><span class="cat-item-val">Rp 61.000</span></div>
-      <div class="cat-sub"><span>Subtotal</span><span style="color:#2563eb;">Rp 3.625.000</span></div>
-    </div>
-
-    <!-- 2. HUTANG / KEWAJIBAN -->
-    <div style="background:#FFF9E6;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #fcd34d;">
-      <div class="cat-head" style="color:#d97706;">⚠️ Hutang / Kewajiban</div>
-      <div class="cat-item"><span>Pinjaman Riko (Deposit Lamau)</span><span class="cat-item-val">Rp 500.000</span></div>
-      <div class="cat-sub"><span>Subtotal</span><span style="color:#d97706;">Rp 500.000</span></div>
-    </div>
-
-    <!-- 3. DEPOSIT RAM -->
-    <div style="background:#EBF3FF;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #bfdbfe;">
-      <div class="cat-head" style="color:#2563eb;">🏦 Deposit RAM</div>
-      <div class="cat-item"><span>Deposit Mahap</span><span class="cat-item-val">Rp 50.000.000</span></div>
-      <div class="cat-item"><span>Deposit Nata (Lamau)</span><span class="cat-item-val">Rp 25.000.000</span></div>
-      <div class="cat-item"><span>Deposit Taman</span><span class="cat-item-val">Rp 15.000.000</span></div>
-      <div class="cat-sub"><span>Subtotal</span><span style="color:#2563eb;">Rp 90.000.000</span></div>
-    </div>
-
-    <!-- 4. OPERASIONAL -->
-    <div style="background:#F3EEFF;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #d8b4fe;">
-      <div class="cat-head" style="color:#7c3aed;">🏭 Operasional</div>
-      <div class="cat-item"><span>Loper 3 DT</span><span class="cat-item-val">Rp 902.500</span></div>
-      <div class="cat-sub"><span>Subtotal</span><span style="color:#7c3aed;">Rp 902.500</span></div>
-    </div>
-
-    <!-- 5. PEMBAYARAN TBS / BRONDOL -->
-    <div style="background:#E8FAF2;border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid #bbf7d0;">
-      <div class="cat-head" style="color:#16a34a;">🌿 Pembayaran TBS / Brondol</div>
-      <div class="cat-item"><span>Bayar Moen Semalam (Brondol)</span><span class="cat-item-val">Rp 17.861.000</span></div>
-      <div class="cat-item"><span>Bayar Moen Stlah Loper</span><span class="cat-item-val">Rp 28.428.000</span></div>
-      <div class="cat-sub"><span>Subtotal</span><span style="color:#16a34a;">Rp 46.289.000</span></div>
-    </div>
-
-    <div class="mdiv"></div>
-    <div class="mtotal"><div class="mtl">Total Pengeluaran</div><div class="mtv">Rp 141.316.500</div></div>
+    <div id="modalKeluarContent"></div>
   </div>
 </div>
 
-<!-- MODAL DEPOSIT -->
+<!-- ===== MODAL DEPOSIT ===== -->
+
 <div id="modal-deposit" class="modal" onclick="closeModalOutside(event,'modal-deposit')">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('modal-deposit')">✕</button>
     <div class="modal-title">🏦 Deposit per RAM</div>
-    <div class="dep-item"><div class="dep-name">📍 RAM Lamau</div><div class="dep-val">Rp 25.500.000</div></div>
-    <div class="dep-item"><div class="dep-name">📍 RAM Mahap</div><div class="dep-val">Rp 50.000.000</div></div>
-    <div class="dep-item"><div class="dep-name">📍 RAM Taman</div><div class="dep-val">Rp 15.000.000</div></div>
-    <div class="mdiv"></div>
-    <div class="mtotal"><div class="mtl">Total Deposit Terikat</div><div class="mtv">Rp 90.500.000</div></div>
+    <div id="modalDepositContent"></div>
   </div>
 </div>
 
 <script>
-// =================== DATA LAPORAN ===================
-const laporanHTML = {
-  mahap: `<div class="lap-wrap">
-  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+// ============================================================
+// DATABASE — TAMBAH DATA BARU DI BAWAH SETIAP HARI
+// ============================================================
+const DB = {
 
-  <div class="header">
-    <div class="co-name">Lamau Persada Mandiri</div>
-    <div class="ram-name">RAM Mahap</div>
-    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
-    <div class="header-tags">
-      <span class="htag">📍 PAM · Rp 3.500/kg</span>
-      <span class="htag">📦 Grading PAM 4%</span>
-      <span class="htag">🌿 Brondol Lamau Rp 3.900/kg</span>
-    </div>
-    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
-      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
-    </div>
-  </div>
+  // ---- 8 MEI 2026 ----
+  "2026-05-08": {
+    label: "Jumat, 8 Mei 2026",
+    kas: {
+      sisaKemarin: 28865000,
+      uangMasuk:   40000000,
+      pinjaman:    15000000,
+      totalKeluar: 78160000,
+      sisaKas:     5705000,
+      deposit: { lamau:25500000, mahap:50000000, taman:15000000 },
+      pengeluaran: {
+        pribadi:    [],
+        hutang:     [{ n:"Pinjaman deposit (wajib kembali)", v:15000000 }],
+        depositRam: [{ n:"Deposit Lamau", v:25500000 }, { n:"Deposit Mahap", v:50000000 }, { n:"Deposit Taman", v:15000000 }],
+        operasional:[{ n:"Upah Pemuat", v:800000 }, { n:"Uang Makan", v:100000 }, { n:"Lansir Ropi DS", v:981000 }, { n:"Upah Muat Ropi DS", v:151000 }, { n:"Makan Ropi DS", v:100000 }, { n:"Makan Agus", v:50000 }],
+        pembayaran: [{ n:"Pembayaran TBS (Mahap)", v:73869000 }]
+      }
+    },
+    ram: [
+      { nama:"RAM Mahap", tujuan:"PAM · Grading 4%", harga:"Rp 3.500/kg", untung:4874961, modal:3419, restan:16090, supir:["Hendi","Jum","Agus"], status:"untung", key:"mahap_08" },
+      { nama:"RAM Lamau", tujuan:"Mandor · Grading 5%", harga:"Rp 3.900/kg", untung:-90060, modal:3743, restan:4097, supir:["Dilak"], status:"rugi", key:"lamau_08" },
+      { nama:"RAM Nanga Taman", tujuan:"RAM Lamau · Grading 5%", harga:"Rp 3.850/kg", untung:471940, modal:3710, restan:2440, supir:["Agus","Ardi"], status:"tipis", key:"taman_08" }
+    ]
+  },
 
-  <div class="kpi-row">
-    <div class="kpi green">
-      <div class="kpi-label">Estimasi Sementara</div>
-      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Hendi+Jum+Agus</div>
-      <div class="kpi-val" style="font-size:15px;">+Rp 4.874.961</div>
-      <div class="kpi-unit">Belum final · susut belum dihitung</div>
-    </div>
-    <div class="kpi orange">
-      <div class="kpi-label">Modal Rata²/kg</div>
-      <div class="kpi-val">3.419</div>
-      <div class="kpi-unit">Rp/kg (inc. ongkos)</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Sisa Restan</div>
-      <div class="kpi-val">16.090</div>
-      <div class="kpi-unit">kg di lapangan</div>
-    </div>
-  </div>
+  // ---- 9 MEI 2026 ----
+  "2026-05-09": {
+    label: "Sabtu, 9 Mei 2026",
+    kas: {
+      sisaKemarin: 67372000,
+      uangMasuk:   121049000,
+      pinjaman:    0,
+      totalKeluar: 141616000,
+      sisaKas:     46805000,
+      deposit: { lamau:25500000, mahap:50000000, taman:15000000 },
+      pengeluaran: {
+        pribadi:    [{ n:"Bayar Cicilan Laptop Adek", v:2900000 }, { n:"TF Besi 15", v:664000 }, { n:"Bayar Link Mila", v:61000 }],
+        hutang:     [{ n:"Pinjaman Riko (Deposit Lamau)", v:500000 }],
+        depositRam: [{ n:"Deposit Mahap", v:50000000 }, { n:"Deposit Nata (Lamau)", v:25000000 }, { n:"Deposit Taman", v:15000000 }],
+        operasional:[{ n:"Loper 3 DT", v:902500 }],
+        pembayaran: [{ n:"Bayar Moen Semalam (Brondol)", v:17861000 }, { n:"Bayar Moen Stlah Loper", v:28428000 }]
+      }
+    },
+    ram: [
+      { nama:"RAM Mahap", tujuan:"PAM · Grading 4%", harga:"Rp 3.500/kg", untung:4874961, modal:3419, restan:16090, supir:["Hendi","Jum","Agus"], status:"untung", key:"mahap_08" },
+      { nama:"RAM Lamau", tujuan:"Mandor · Grading 5%", harga:"Rp 3.900/kg", untung:-90060, modal:3743, restan:4097, supir:["Dilak"], status:"rugi", key:"lamau_08" },
+      { nama:"RAM Nanga Taman", tujuan:"RAM Lamau · Grading 5%", harga:"Rp 3.850/kg", untung:471940, modal:3710, restan:2440, supir:["Agus","Ardi"], status:"tipis", key:"taman_08" }
+    ]
+  }
 
-  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
-    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
-    <div style="font-size:15px;font-weight:800;color:#2563eb;">28.751 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
-  </div>
-
-  <!-- 1. Keuangan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 28.865.000</span></div>
-      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 40.000.000</span></div>
-      <div class="row"><span class="rl dim">Pinjaman masuk (wajib kembali)</span><span class="rv">+ Rp 15.000.000</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 83.865.000</span></div>
-      <div class="row"><span class="rl dim">Total pengeluaran (laporan admin)</span><span class="rv red">− Rp 78.160.000</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit (Kas Aktual)</span><span class="rv green big">Rp 5.705.000</span></div>
-    </div>
-    <div class="kewajiban-box">
-      <div class="kw-title">⚠️ Kewajiban yang Belum Diselesaikan</div>
-      <div class="kw-row"><span style="color:#4a5568;">Pinjaman deposit (wajib kembali)</span><span style="font-weight:800;color:#d97706;">Rp 15.000.000</span></div>
-      <div class="kw-row" style="border-bottom:none;"><span style="color:#4a5568;">Tunggakan buah ke petani</span><span style="font-weight:800;color:#d97706;">Rp 15.066.000</span></div>
-      <div class="kw-total"><span style="font-size:12px;font-weight:700;color:#92400e;">Total Kewajiban</span><span style="font-size:15px;font-weight:800;color:#dc2626;">Rp 30.066.000</span></div>
-    </div>
-  </div>
-
-  <!-- 2. Harga Beli -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 73.869.000</span></div>
-      <div class="row"><span class="rl dim">Tunggakan dibayar</span><span class="rv orange">Rp 15.066.000</span></div>
-      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">28.751 kg</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.093 / kg</span></div>
-      <div class="row"><span class="rl dim" style="font-size:10px;">*(TBS saja tanpa tunggakan)</span><span class="rv muted">Rp 2.569 / kg</span></div>
-    </div>
-  </div>
-
-  <!-- 3. Restan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Total kirim</div></div></div>
-    <div class="restan">
-      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">29.940</div><div class="rb-unit">kg</div></div>
-      <div class="op">+</div>
-      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">5.690</div><div class="rb-unit">kg</div></div>
-      <div class="op">−</div>
-      <div class="rb"><div class="rb-label">Total Kirim</div><div class="rb-val">19.540</div><div class="rb-unit">kg</div></div>
-      <div class="op">=</div>
-      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">16.090</div><div class="rb-unit">kg di lapangan</div></div>
-    </div>
-    <div style="padding:0 14px 12px;display:flex;gap:8px;">
-      <div style="flex:1;background:#EBF3FF;border-radius:9px;padding:8px 10px;text-align:center;">
-        <div style="font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;margin-bottom:3px;">Ke PAM</div>
-        <div style="font-size:16px;font-weight:800;color:#2563eb;">17.720 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
-        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Hendi + Jum</div>
-      </div>
-      <div style="flex:1;background:#E8FAF2;border-radius:9px;padding:8px 10px;text-align:center;">
-        <div style="font-size:9px;font-weight:700;color:#16a34a;text-transform:uppercase;margin-bottom:3px;">Ke RAM Lamau</div>
-        <div style="font-size:16px;font-weight:800;color:#16a34a;">1.820 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
-        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Agus (brondol)</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. Modal -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">PAM +Rp 250/kg ongkos supir · Lamau +Rp 0</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 73.869.000</span></div>
-      <div class="row"><span class="rl dim">Tunggakan</span><span class="rv">Rp 15.066.000</span></div>
-      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 800.000</span></div>
-      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
-      <div class="row"><span class="rl dim">Upah Lansir Ropi DS</span><span class="rv">Rp 981.000</span></div>
-      <div class="row"><span class="rl dim">Upah Muat Ropi DS</span><span class="rv">Rp 151.000</span></div>
-      <div class="row"><span class="rl dim">Uang Makan Ropi DS</span><span class="rv">Rp 100.000</span></div>
-      <div class="row"><span class="rl dim">Uang Makan Agus</span><span class="rv">Rp 50.000</span></div>
-      <div class="row"><span class="rl strike">Kasbon Jum</span><span class="rv muted">Rp 500.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
-      <div class="row"><span class="rl strike">Minyak Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
-      <div class="row"><span class="rl strike">Minyak Solar Lansir Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 91.117.000</span></div>
-      <div class="row"><span class="rl dim">÷ Netto 28.751 kg</span><span class="rv" style="color:#4a5568;font-size:13px;font-weight:700;">= Rp 3.169 / kg</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl dim">+ Ongkos supir PAM Rp 250/kg</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.419 / kg</span></div>
-      <div class="row"><span class="rl dim">+ Ongkos supir Lamau Rp 0/kg</span><span class="rv" style="color:#16a34a;font-size:16px;font-weight:800;">= Rp 3.169 / kg</span></div>
-    </div>
-  </div>
-
-  <!-- 5. Penjualan Real -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ig">📊</div><div><div class="sec-title">5. Penjualan Real & Kenaikan kg</div><div class="sec-sub">Bruto timbang pabrik − grading × harga jual</div></div></div>
-    <div class="sec-body">
-      <div class="jual-card">
-        <div class="jual-head"><span class="jual-name">🚛 Hendi</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
-        <div class="jual-body">
-          <div class="jual-row"><span>Kirim dari RAM</span><span>8.490 kg</span></div>
-          <div class="jual-row"><span>Bruto timbang pabrik</span><span>8.710 kg <span class="jual-naik">+220 kg ↑</span></span></div>
-          <div class="jual-row"><span>Grading 4%</span><span>− 348 kg</span></div>
-          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">8.362 kg</span></div>
-          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 29.265.600</span></div>
-        </div>
-      </div>
-      <div class="jual-card">
-        <div class="jual-head"><span class="jual-name">🚛 Jum</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
-        <div class="jual-body">
-          <div class="jual-row"><span>Kirim dari RAM</span><span>9.230 kg</span></div>
-          <div class="jual-row"><span>Bruto timbang pabrik</span><span>9.520 kg <span class="jual-naik">+290 kg ↑</span></span></div>
-          <div class="jual-row"><span>Grading 4%</span><span>− 381 kg</span></div>
-          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">9.139 kg</span></div>
-          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 31.987.200</span></div>
-        </div>
-      </div>
-      <div class="jual-card">
-        <div class="jual-head green-h"><span class="jual-name">🚛 Agus</span><span class="jual-dest green-d">🌿 RAM Lamau · Brondol 5%</span></div>
-        <div class="jual-body">
-          <div class="jual-row"><span>Brondol dikirim</span><span>1.820 kg</span></div>
-          <div class="jual-row"><span>Grading 5%</span><span>− 91 kg</span></div>
-          <div class="jual-row"><span>Netto terjual</span><span style="color:#16a34a;">1.729 kg</span></div>
-          <div class="jual-row"><span>Nilai jual (× Rp 3.900)</span><span style="color:#16a34a;font-weight:800;">Rp 6.743.100</span></div>
-        </div>
-      </div>
-      <div style="background:#E8FAF2;border:1px solid #bbf7d0;border-radius:9px;padding:9px 12px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
-        <div style="font-size:11px;font-weight:700;color:#16a34a;">📈 Total Kenaikan kg ke PAM</div>
-        <div style="font-size:15px;font-weight:800;color:#16a34a;">+510 kg</div>
-      </div>
-      <div class="jual-total" style="margin-top:8px;">
-        <div class="jual-total-label">Total Nilai Penjualan Real</div>
-        <div class="jual-total-val">Rp 67.995.900</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. Gap -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">6. Gap & Keuntungan Real</div><div class="sec-sub">Modal rata²/kg · Gap timbangan · Nilai rupiah</div></div></div>
-    <div class="sec-body" style="padding-bottom:6px;">
-      <div class="row"><span class="rl dim">Modal rata² / kg ke PAM (+ ongkos Rp 250)</span><span class="rv orange">Rp 3.419 / kg</span></div>
-      <div class="row"><span class="rl dim">Modal rata² / kg ke Lamau (ongkos Rp 0)</span><span class="rv" style="color:#16a34a;">Rp 3.169 / kg</span></div>
-      <div class="row"><span class="rl dim">Harga beli petani (TBS + tunggakan) / kg netto</span><span class="rv">Rp 3.093 / kg</span></div>
-    </div>
-    <div style="padding:0 14px 6px;">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a96a8;margin-bottom:8px;">📦 Gap Real per Muatan</div>
-      <!-- Hendi -->
-      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
-        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Hendi → PAM</span>
-          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+220 kg</strong></span>
-        </div>
-        <div style="padding:8px 12px;">
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 8.490 bruto −4% = 8.150,4 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 25.209.187</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 8.710 bruto −4% = 8.361,6 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 29.265.600</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 8.710 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.177.500</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
-          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Hendi</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.578.913</span></div>
-        </div>
-      </div>
-      <!-- Jum -->
-      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
-        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Jum → PAM</span>
-          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+290 kg</strong></span>
-        </div>
-        <div style="padding:8px 12px;">
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 9.230 bruto −4% = 8.860,8 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 27.406.454</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 9.520 bruto −4% = 9.139,2 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 31.987.200</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 9.520 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.380.000</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
-          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Jum</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.900.746</span></div>
-        </div>
-      </div>
-      <!-- Agus -->
-      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
-        <div style="background:#E8FAF2;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Agus → RAM Lamau</span>
-          <span style="font-size:10px;font-weight:600;color:#16a34a;">Brondol · Ongkos Rp 0</span>
-        </div>
-        <div style="padding:8px 12px;">
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 1.820 bruto −5% = 1.729 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 5.347.797</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual Lamau: 1.820 −5% = 1.729 kg × Rp 3.900</span><span style="font-weight:700;color:#16a34a;">+ Rp 6.743.100</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir & sopoi</span><span style="font-weight:700;color:#8a96a8;">Rp 0</span></div>
-          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Agus</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.395.303</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="gap-box">
-      <div class="gap-top">
-        <div class="gap-left">
-          <div class="gl">Total Keuntungan Real Hari Ini</div>
-          <div class="gv">+ Rp 4.874.961</div>
-          <div class="gu">Hendi + Jum + Agus</div>
-        </div>
-        <div class="gap-right">
-          <div class="gl">Kenaikan timbang PAM</div>
-          <div class="gv">+510 kg</div>
-          <div class="gs">Hendi +220 · Jum +290</div>
-        </div>
-      </div>
-      <div class="gap-note">⚠️ <strong>Catatan:</strong> Angka ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
-    </div>
-  </div>
-
-  <!-- 7. Supir -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">7. Rekap Supir & Tonase</div><div class="sec-sub">Per supir, tujuan, dan tonase kiriman</div></div></div>
-    <div class="supir-list">
-      <div class="supir-row">
-        <div class="av">H</div>
-        <div class="si"><div class="sn">Hendi</div><div class="sd">📍 PAM · Bruto pabrik 8.710 kg (+220 kg)</div></div>
-        <div><div class="st-val">8.490</div><div class="st-unit">kg kirim</div></div>
-      </div>
-      <div class="supir-row">
-        <div class="av">J</div>
-        <div class="si"><div class="sn">Jum</div><div class="sd">📍 PAM · Bruto pabrik 9.520 kg (+290 kg)</div></div>
-        <div><div class="st-val">9.230</div><div class="st-unit">kg kirim</div></div>
-      </div>
-      <div class="supir-row">
-        <div class="av green">A</div>
-        <div class="si"><div class="sn">Agus</div><div class="sd">🌿 RAM Lamau · Brondol (antar RAM)</div></div>
-        <div><div class="st-val" style="color:#16a34a;">1.820</div><div class="st-unit">kg brondol</div></div>
-      </div>
-      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">19.540 kg</div></div>
-    </div>
-  </div>
-
-  <div class="footer">Lamau Persada Mandiri · RAM Mahap · 08 Mei 2026</div>
-</div>
-</div><!-- end mahap -->
-
-<!-- ==================== PAGE: LAMAU ==================== -->`,
-  lamau: `<div class="lap-wrap">
-  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
-
-  <div class="header">
-    <div class="co-name">Lamau Persada Mandiri</div>
-    <div class="ram-name">RAM Lamau</div>
-    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
-    <div class="header-tags">
-      <span class="htag">📍 Tujuan: Mandor</span>
-      <span class="htag">📦 Grading 5%</span>
-      <span class="htag">💰 Harga Mandor Rp 3.900/kg</span>
-    </div>
-    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
-      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
-    </div>
-  </div>
-
-  <div class="kpi-row">
-    <div class="kpi red">
-      <div class="kpi-label">Estimasi Gap</div>
-      <div class="kpi-label" style="color:#dc2626;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Dilak</div>
-      <div class="kpi-val">−Rp 90 rb</div>
-      <div class="kpi-unit">Belum final · susut belum dihitung</div>
-    </div>
-    <div class="kpi orange">
-      <div class="kpi-label">Modal Rata²/kg</div>
-      <div class="kpi-val">3.743</div>
-      <div class="kpi-unit">Rp/kg</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Sisa Restan</div>
-      <div class="kpi-val">4.097</div>
-      <div class="kpi-unit">kg di lapangan</div>
-    </div>
-  </div>
-
-  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
-    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
-    <div style="font-size:15px;font-weight:800;color:#2563eb;">2.125 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
-  </div>
-
-  <!-- 1. Keuangan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 2.729.000</span></div>
-      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 10.000.000</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 12.729.000</span></div>
-      <div class="row"><span class="rl dim">Total pengeluaran real</span><span class="rv red">− Rp 10.054.000</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 2.675.000</span></div>
-    </div>
-    <div class="status ok">✅ BALANCE — Sesuai laporan admin</div>
-  </div>
-
-  <!-- 2. Harga Beli -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 6.554.000</span></div>
-      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
-      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">2.125 kg</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.084 / kg</span></div>
-    </div>
-  </div>
-
-  <!-- 3. Restan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Tambahan + Restan kemarin − Kirim</div></div></div>
-    <div class="tambahan-box">
-      <div><div style="font-size:10px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">📌 Buah Tambahan (Dicatat, Bukan Dibeli)</div>
-      <div style="font-size:13px;font-weight:700;color:#1a2333;">Brondol 1.820 kg — Asal: Mahap</div></div>
-      <span class="dtag">DATA ONLY</span>
-    </div>
-    <div class="restan">
-      <div class="rb"><div class="rb-label">Bruto TBS</div><div class="rb-val">2.190</div><div class="rb-unit">kg</div></div>
-      <div class="op">+</div>
-      <div class="rb add"><div class="rb-label">Brondol Mahap</div><div class="rb-val">1.820</div><div class="rb-unit">kg</div></div>
-      <div class="op">+</div>
-      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.457</div><div class="rb-unit">kg</div></div>
-      <div class="op">−</div>
-      <div class="rb"><div class="rb-label">Kirim Mandor</div><div class="rb-val">2.370</div><div class="rb-unit">kg</div></div>
-      <div class="op">=</div>
-      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">4.097</div><div class="rb-unit">kg (admin)</div></div>
-    </div>
-    <div class="status info" style="margin-bottom:12px;">ℹ️ Brondol 1.820 kg dari Mahap tidak dihitung di modal. Dicatat sebagai tambahan fisik saja.</div>
-  </div>
-
-  <!-- 4. Modal -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 6.554.000</span></div>
-      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 300.000</span></div>
-      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 50.000</span></div>
-      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
-      <div class="row"><span class="rl dim">Upah Muat Nambah Eko</span><span class="rv">Rp 60.000</span></div>
-      <div class="row"><span class="rl dim">Lansir Agus</span><span class="rv">Rp 70.000</span></div>
-      <div class="row"><span class="rl dim">Rokok Bapak</span><span class="rv">Rp 50.000</span></div>
-      <div class="row"><span class="rl dim">Es</span><span class="rv">Rp 10.000</span></div>
-      <div class="row"><span class="rl dim">Dapur Rumah</span><span class="rv">Rp 350.000</span></div>
-      <div class="row"><span class="rl dim">Bensin</span><span class="rv">Rp 50.000</span></div>
-      <div class="row"><span class="rl dim">Mak Ara (Operasional)</span><span class="rv">Rp 160.000</span></div>
-      <div class="row"><span class="rl strike">Piutang Dilak + Mkn</span><span class="rv muted">Rp 2.100.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Masuk Modal</span><span class="rv orange big">Rp 7.954.000</span></div>
-      <div class="row"><span class="rl dim">÷ Netto 2.125 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.743 / kg</span></div>
-    </div>
-    <div class="status warn">⚠️ Total pengeluaran REAL kas: Rp 10.054.000 (termasuk piutang Dilak Rp 2.100.000 exclude dari modal)</div>
-  </div>
-
-  <!-- 5. Gap -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ir">📉</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual Mandor − Modal rata-rata/kg</div></div></div>
-    <div class="sec-body" style="padding-bottom:6px;">
-      <div class="row"><span class="rl dim">Harga jual ke Mandor</span><span class="rv blue">Rp 3.900 / kg</span></div>
-      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.743 / kg</span></div>
-      <div class="row"><span class="rl dim">Gap kasar per kg (jual − modal)</span><span class="rv green">+ Rp 157 / kg</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl dim">Bruto dikirim ke Mandor</span><span class="rv">2.370 kg</span></div>
-      <div class="row"><span class="rl dim">Netto timbang Mandor (−5%)</span><span class="rv">2.251,5 kg</span></div>
-      <div class="row"><span class="rl dim">Pendapatan (2.251,5 × Rp 3.900)</span><span class="rv blue">Rp 8.780.850</span></div>
-      <div class="row"><span class="rl dim">Modal muatan (2.370 × Rp 3.743)</span><span class="rv orange">Rp 8.870.910</span></div>
-    </div>
-    <div class="gap-box red">
-      <div class="gap-top">
-        <div class="gap-left">
-          <div class="gl">Estimasi Gap Muatan ini</div>
-          <div class="gv">− Rp 90.060</div>
-          <div class="gu">dari 2.370 kg bruto</div>
-        </div>
-        <div class="gap-right">
-          <div class="gl">Gap per kg netto</div>
-          <div class="gv">− Rp 40 / kg</div>
-          <div class="gs">netto 2.251,5 kg</div>
-        </div>
-      </div>
-      <div class="gap-note">⚠️ <strong>Belum final.</strong> Brondol Mahap 1.820 kg belum dihitung di modal. Estimasi belum dikurangi penyusutan.</div>
-    </div>
-  </div>
-
-  <!-- 6. Supir -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
-    <div class="supir-list">
-      <div class="supir-row">
-        <div class="av">D</div>
-        <div class="si"><div class="sn">Dilak (Brondol)</div><div class="sd">📍 Mandor · Ongkos Rp 0</div></div>
-        <div><div class="st-val">2.370</div><div class="st-unit">kg bruto</div></div>
-      </div>
-      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">2.370 kg</div></div>
-    </div>
-    <div class="status info">ℹ️ Netto timbang Mandor estimasi: <strong>2.251,5 kg</strong> (bruto 2.370 × 95%)</div>
-  </div>
-
-  <div class="footer">Lamau Persada Mandiri · RAM Lamau · 08 Mei 2026</div>
-</div>
-</div><!-- end lamau -->
-
-<!-- ==================== PAGE: NANGA TAMON ==================== -->`,
-  taman: `<div class="lap-wrap">
-  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
-
-  <div class="header">
-    <div class="co-name">Lamau Persada Mandiri</div>
-    <div class="ram-name">RAM Nanga Taman</div>
-    <div class="header-date" style="margin-top:6px;">📅 Rabu, 6 Mei 2026</div>
-    <div class="header-tags">
-      <span class="htag">📍 Tujuan: RAM Lamau</span>
-      <span class="htag">📦 Grading Brondol 5%</span>
-      <span class="htag">💰 Harga RAM Lamau Rp 3.850/kg</span>
-    </div>
-    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
-      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
-    </div>
-  </div>
-
-  <div class="kpi-row">
-    <div class="kpi green">
-      <div class="kpi-label">Estimasi Untung</div>
-      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Agus + Ardi</div>
-      <div class="kpi-val" style="font-size:17px;">+Rp 471.940</div>
-      <div class="kpi-unit">Belum final · susut belum dihitung</div>
-    </div>
-    <div class="kpi orange">
-      <div class="kpi-label">Modal Rata²/kg</div>
-      <div class="kpi-val">3.710</div>
-      <div class="kpi-unit">Rp/kg</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Sisa Restan</div>
-      <div class="kpi-val">2.440</div>
-      <div class="kpi-unit">kg di lapangan</div>
-    </div>
-  </div>
-
-  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
-    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
-    <div style="font-size:15px;font-weight:800;color:#2563eb;">3.371 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
-  </div>
-
-  <!-- 1. Keuangan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 3.844.400</span></div>
-      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 15.000.000</span></div>
-      <div class="row"><span class="rl dim">Pengembalian (Argun)</span><span class="rv">Rp 1.006.820</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 19.851.220</span></div>
-      <div class="row"><span class="rl dim">Total pengeluaran</span><span class="rv red">− Rp 13.107.600</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 6.743.620</span></div>
-    </div>
-    <div class="status ok">✅ BALANCE — Sesuai laporan admin <span style="font-weight:400;font-size:11px;">&nbsp;(selisih Rp 20 = pembulatan)</span></div>
-  </div>
-
-  <!-- 2. Harga Beli -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 11.169.000</span></div>
-      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
-      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">3.371 kg</span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.313 / kg</span></div>
-    </div>
-  </div>
-
-  <!-- 3. Restan -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Kirim ke tujuan</div></div></div>
-    <div class="restan">
-      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">3.560</div><div class="rb-unit">kg</div></div>
-      <div class="op">+</div>
-      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.046</div><div class="rb-unit">kg</div></div>
-      <div class="op">−</div>
-      <div class="rb"><div class="rb-label">Kirim Lamau</div><div class="rb-val">3.166</div><div class="rb-unit">kg</div></div>
-      <div class="op">=</div>
-      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">2.440</div><div class="rb-unit">kg di lapangan</div></div>
-    </div>
-  </div>
-
-  <!-- 4. Modal -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
-    <div class="sec-body">
-      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 11.169.000</span></div>
-      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 184.000</span></div>
-      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
-      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
-      <div class="row"><span class="rl dim">Upah Lansir Rahmi</span><span class="rv">Rp 104.000</span></div>
-      <div class="row"><span class="rl dim">Upah Bongkar</span><span class="rv">Rp 20.000</span></div>
-      <div class="row"><span class="rl dim">Beli Es</span><span class="rv">Rp 10.000</span></div>
-      <div class="row"><span class="rl dim">Lansir Lamau</span><span class="rv">Rp 70.000</span></div>
-      <div class="row"><span class="rl dim">Uanges Ardi</span><span class="rv">Rp 50.000</span></div>
-      <div class="row"><span class="rl dim">Gaji Pak Ali</span><span class="rv">Rp 500.000</span></div>
-      <div class="row"><span class="rl strike">Pinjaman Anton Supir</span><span class="rv muted">Rp 600.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
-      <div class="divline"></div>
-      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 12.507.000</span></div>
-      <div class="row"><span class="rl dim">÷ Netto 3.371 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.710 / kg</span></div>
-    </div>
-  </div>
-
-  <!-- 5. Gap -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual RAM Lamau − Modal rata-rata/kg</div></div></div>
-    <div class="sec-body" style="padding-bottom:6px;">
-      <div class="row"><span class="rl dim">Harga jual ke RAM Lamau</span><span class="rv blue">Rp 3.850 / kg</span></div>
-      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.710 / kg</span></div>
-    </div>
-    <div class="gap-box">
-      <div class="gap-top">
-        <div class="gap-left">
-          <div class="gl">Keuntungan per kg</div>
-          <div class="gv">+ Rp 140</div>
-          <div class="gu">per kilogram</div>
-        </div>
-        <div class="gap-right">
-          <div class="gl">Estimasi total hari ini</div>
-          <div class="gv">+Rp 471.940</div>
-          <div class="gs">dari 3.371 kg netto</div>
-        </div>
-      </div>
-      <div class="gap-note">⚠️ <strong>Catatan Penting:</strong> Angka keuntungan ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
-    </div>
-  </div>
-
-  <!-- 6. Supir -->
-  <div class="section">
-    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
-    <div class="supir-list">
-      <div class="supir-row">
-        <div class="av">A</div>
-        <div class="si"><div class="sn">Agus</div><div class="sd">📍 RAM Lamau · 33,5% dari total</div></div>
-        <div><div class="st-val">1.060</div><div class="st-unit">kg</div></div>
-      </div>
-      <div class="supir-row">
-        <div class="av">A</div>
-        <div class="si"><div class="sn">Ardi</div><div class="sd">📍 RAM Lamau · 66,5% dari total</div></div>
-        <div><div class="st-val">2.106</div><div class="st-unit">kg</div></div>
-      </div>
-      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">3.166 kg</div></div>
-    </div>
-  </div>
-
-  <div class="footer">Lamau Persada Mandiri · RAM Nanga Taman · 06 Mei 2026</div>
-</div>
-</div><!-- end nangatamon -->`
+  // ---- TAMBAH TANGGAL BARU DI SINI ----
+  // Claude akan menambahkan blok baru setiap hari
 };
 
-const laporanCSS = `
+// ============================================================
+// LAPORAN HTML — EMBED LANGSUNG (TIDAK PERLU FETCH)
+// ============================================================
+const LAPORAN_CSS = `
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
 body {
@@ -1534,50 +784,862 @@ body {
 }
 `;
 
-// =================== FUNCTIONS ===================
-function showTab(name, btn) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo(0,0);
+const LAPORAN = {
+  mahap_08: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Mahap</div>
+    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 PAM · Rp 3.500/kg</span>
+      <span class="htag">📦 Grading PAM 4%</span>
+      <span class="htag">🌿 Brondol Lamau Rp 3.900/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi green">
+      <div class="kpi-label">Estimasi Sementara</div>
+      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Hendi+Jum+Agus</div>
+      <div class="kpi-val" style="font-size:15px;">+Rp 4.874.961</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.419</div>
+      <div class="kpi-unit">Rp/kg (inc. ongkos)</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">16.090</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">28.751 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 28.865.000</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 40.000.000</span></div>
+      <div class="row"><span class="rl dim">Pinjaman masuk (wajib kembali)</span><span class="rv">+ Rp 15.000.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 83.865.000</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran (laporan admin)</span><span class="rv red">− Rp 78.160.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit (Kas Aktual)</span><span class="rv green big">Rp 5.705.000</span></div>
+    </div>
+    <div class="kewajiban-box">
+      <div class="kw-title">⚠️ Kewajiban yang Belum Diselesaikan</div>
+      <div class="kw-row"><span style="color:#4a5568;">Pinjaman deposit (wajib kembali)</span><span style="font-weight:800;color:#d97706;">Rp 15.000.000</span></div>
+      <div class="kw-row" style="border-bottom:none;"><span style="color:#4a5568;">Tunggakan buah ke petani</span><span style="font-weight:800;color:#d97706;">Rp 15.066.000</span></div>
+      <div class="kw-total"><span style="font-size:12px;font-weight:700;color:#92400e;">Total Kewajiban</span><span style="font-size:15px;font-weight:800;color:#dc2626;">Rp 30.066.000</span></div>
+    </div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 73.869.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan dibayar</span><span class="rv orange">Rp 15.066.000</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">28.751 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.093 / kg</span></div>
+      <div class="row"><span class="rl dim" style="font-size:10px;">*(TBS saja tanpa tunggakan)</span><span class="rv muted">Rp 2.569 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Total kirim</div></div></div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">29.940</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">5.690</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Total Kirim</div><div class="rb-val">19.540</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">16.090</div><div class="rb-unit">kg di lapangan</div></div>
+    </div>
+    <div style="padding:0 14px 12px;display:flex;gap:8px;">
+      <div style="flex:1;background:#EBF3FF;border-radius:9px;padding:8px 10px;text-align:center;">
+        <div style="font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;margin-bottom:3px;">Ke PAM</div>
+        <div style="font-size:16px;font-weight:800;color:#2563eb;">17.720 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
+        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Hendi + Jum</div>
+      </div>
+      <div style="flex:1;background:#E8FAF2;border-radius:9px;padding:8px 10px;text-align:center;">
+        <div style="font-size:9px;font-weight:700;color:#16a34a;text-transform:uppercase;margin-bottom:3px;">Ke RAM Lamau</div>
+        <div style="font-size:16px;font-weight:800;color:#16a34a;">1.820 <span style="font-size:10px;color:#8a96a8;">kg</span></div>
+        <div style="font-size:10px;color:#8a96a8;margin-top:1px;">Agus (brondol)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">PAM +Rp 250/kg ongkos supir · Lamau +Rp 0</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 73.869.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan</span><span class="rv">Rp 15.066.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 800.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Upah Lansir Ropi DS</span><span class="rv">Rp 981.000</span></div>
+      <div class="row"><span class="rl dim">Upah Muat Ropi DS</span><span class="rv">Rp 151.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan Ropi DS</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan Agus</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl strike">Kasbon Jum</span><span class="rv muted">Rp 500.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="row"><span class="rl strike">Minyak Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
+      <div class="row"><span class="rl strike">Minyak Solar Lansir Candra</span><span class="rv muted">Rp 800.000 &nbsp;<span class="ptag">PIUTANG</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 91.117.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 28.751 kg</span><span class="rv" style="color:#4a5568;font-size:13px;font-weight:700;">= Rp 3.169 / kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl dim">+ Ongkos supir PAM Rp 250/kg</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.419 / kg</span></div>
+      <div class="row"><span class="rl dim">+ Ongkos supir Lamau Rp 0/kg</span><span class="rv" style="color:#16a34a;font-size:16px;font-weight:800;">= Rp 3.169 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 5. Penjualan Real -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📊</div><div><div class="sec-title">5. Penjualan Real & Kenaikan kg</div><div class="sec-sub">Bruto timbang pabrik − grading × harga jual</div></div></div>
+    <div class="sec-body">
+      <div class="jual-card">
+        <div class="jual-head"><span class="jual-name">🚛 Hendi</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Kirim dari RAM</span><span>8.490 kg</span></div>
+          <div class="jual-row"><span>Bruto timbang pabrik</span><span>8.710 kg <span class="jual-naik">+220 kg ↑</span></span></div>
+          <div class="jual-row"><span>Grading 4%</span><span>− 348 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">8.362 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 29.265.600</span></div>
+        </div>
+      </div>
+      <div class="jual-card">
+        <div class="jual-head"><span class="jual-name">🚛 Jum</span><span class="jual-dest">📍 PAM · Grading 4%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Kirim dari RAM</span><span>9.230 kg</span></div>
+          <div class="jual-row"><span>Bruto timbang pabrik</span><span>9.520 kg <span class="jual-naik">+290 kg ↑</span></span></div>
+          <div class="jual-row"><span>Grading 4%</span><span>− 381 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#2563eb;">9.139 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.500)</span><span style="color:#16a34a;font-weight:800;">Rp 31.987.200</span></div>
+        </div>
+      </div>
+      <div class="jual-card">
+        <div class="jual-head green-h"><span class="jual-name">🚛 Agus</span><span class="jual-dest green-d">🌿 RAM Lamau · Brondol 5%</span></div>
+        <div class="jual-body">
+          <div class="jual-row"><span>Brondol dikirim</span><span>1.820 kg</span></div>
+          <div class="jual-row"><span>Grading 5%</span><span>− 91 kg</span></div>
+          <div class="jual-row"><span>Netto terjual</span><span style="color:#16a34a;">1.729 kg</span></div>
+          <div class="jual-row"><span>Nilai jual (× Rp 3.900)</span><span style="color:#16a34a;font-weight:800;">Rp 6.743.100</span></div>
+        </div>
+      </div>
+      <div style="background:#E8FAF2;border:1px solid #bbf7d0;border-radius:9px;padding:9px 12px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:#16a34a;">📈 Total Kenaikan kg ke PAM</div>
+        <div style="font-size:15px;font-weight:800;color:#16a34a;">+510 kg</div>
+      </div>
+      <div class="jual-total" style="margin-top:8px;">
+        <div class="jual-total-label">Total Nilai Penjualan Real</div>
+        <div class="jual-total-val">Rp 67.995.900</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">6. Gap & Keuntungan Real</div><div class="sec-sub">Modal rata²/kg · Gap timbangan · Nilai rupiah</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Modal rata² / kg ke PAM (+ ongkos Rp 250)</span><span class="rv orange">Rp 3.419 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata² / kg ke Lamau (ongkos Rp 0)</span><span class="rv" style="color:#16a34a;">Rp 3.169 / kg</span></div>
+      <div class="row"><span class="rl dim">Harga beli petani (TBS + tunggakan) / kg netto</span><span class="rv">Rp 3.093 / kg</span></div>
+    </div>
+    <div style="padding:0 14px 6px;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a96a8;margin-bottom:8px;">📦 Gap Real per Muatan</div>
+      <!-- Hendi -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Hendi → PAM</span>
+          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+220 kg</strong></span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 8.490 bruto −4% = 8.150,4 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 25.209.187</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 8.710 bruto −4% = 8.361,6 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 29.265.600</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 8.710 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.177.500</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Hendi</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.578.913</span></div>
+        </div>
+      </div>
+      <!-- Jum -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#EBF3FF;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Jum → PAM</span>
+          <span style="font-size:10px;font-weight:600;color:#2563eb;">Kenaikan: <strong>+290 kg</strong></span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 9.230 bruto −4% = 8.860,8 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 27.406.454</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual PAM: 9.520 bruto −4% = 9.139,2 kg × Rp 3.500</span><span style="font-weight:700;color:#16a34a;">+ Rp 31.987.200</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir: 9.520 kg × Rp 250</span><span style="font-weight:700;color:#dc2626;">− Rp 2.380.000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos sopoi PAM</span><span style="font-weight:700;color:#dc2626;">− Rp 300.000</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Jum</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.900.746</span></div>
+        </div>
+      </div>
+      <!-- Agus -->
+      <div style="background:#f8f9fc;border:1px solid #eef0f5;border-radius:11px;margin-bottom:8px;overflow:hidden;">
+        <div style="background:#E8FAF2;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:700;color:#1a2333;">🚛 Agus → RAM Lamau</span>
+          <span style="font-size:10px;font-weight:600;color:#16a34a;">Brondol · Ongkos Rp 0</span>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Beli RAM: 1.820 bruto −5% = 1.729 kg × Rp 3.093</span><span style="font-weight:700;color:#dc2626;">− Rp 5.347.797</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Jual Lamau: 1.820 −5% = 1.729 kg × Rp 3.900</span><span style="font-weight:700;color:#16a34a;">+ Rp 6.743.100</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#4a5568;"><span>Ongkos supir & sopoi</span><span style="font-weight:700;color:#8a96a8;">Rp 0</span></div>
+          <div style="height:1px;background:#e5e9f0;margin:6px 0;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:#1a2333;">Keuntungan Agus</span><span style="font-size:15px;font-weight:800;color:#16a34a;">+ Rp 1.395.303</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="gap-box">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Total Keuntungan Real Hari Ini</div>
+          <div class="gv">+ Rp 4.874.961</div>
+          <div class="gu">Hendi + Jum + Agus</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Kenaikan timbang PAM</div>
+          <div class="gv">+510 kg</div>
+          <div class="gs">Hendi +220 · Jum +290</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Catatan:</strong> Angka ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 7. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">7. Rekap Supir & Tonase</div><div class="sec-sub">Per supir, tujuan, dan tonase kiriman</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">H</div>
+        <div class="si"><div class="sn">Hendi</div><div class="sd">📍 PAM · Bruto pabrik 8.710 kg (+220 kg)</div></div>
+        <div><div class="st-val">8.490</div><div class="st-unit">kg kirim</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av">J</div>
+        <div class="si"><div class="sn">Jum</div><div class="sd">📍 PAM · Bruto pabrik 9.520 kg (+290 kg)</div></div>
+        <div><div class="st-val">9.230</div><div class="st-unit">kg kirim</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av green">A</div>
+        <div class="si"><div class="sn">Agus</div><div class="sd">🌿 RAM Lamau · Brondol (antar RAM)</div></div>
+        <div><div class="st-val" style="color:#16a34a;">1.820</div><div class="st-unit">kg brondol</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">19.540 kg</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Mahap · 08 Mei 2026</div>
+</div>
+</div><!-- end mahap -->
+
+<!-- ==================== PAGE: LAMAU ==================== -->`,
+  lamau_08: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Lamau</div>
+    <div class="header-date" style="margin-top:6px;">📅 Jumat, 8 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 Tujuan: Mandor</span>
+      <span class="htag">📦 Grading 5%</span>
+      <span class="htag">💰 Harga Mandor Rp 3.900/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi red">
+      <div class="kpi-label">Estimasi Gap</div>
+      <div class="kpi-label" style="color:#dc2626;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Dilak</div>
+      <div class="kpi-val">−Rp 90 rb</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.743</div>
+      <div class="kpi-unit">Rp/kg</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">4.097</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">2.125 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 2.729.000</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 10.000.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 12.729.000</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran real</span><span class="rv red">− Rp 10.054.000</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 2.675.000</span></div>
+    </div>
+    <div class="status ok">✅ BALANCE — Sesuai laporan admin</div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 6.554.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">2.125 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.084 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Tambahan + Restan kemarin − Kirim</div></div></div>
+    <div class="tambahan-box">
+      <div><div style="font-size:10px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">📌 Buah Tambahan (Dicatat, Bukan Dibeli)</div>
+      <div style="font-size:13px;font-weight:700;color:#1a2333;">Brondol 1.820 kg — Asal: Mahap</div></div>
+      <span class="dtag">DATA ONLY</span>
+    </div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto TBS</div><div class="rb-val">2.190</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb add"><div class="rb-label">Brondol Mahap</div><div class="rb-val">1.820</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.457</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Kirim Mandor</div><div class="rb-val">2.370</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">4.097</div><div class="rb-unit">kg (admin)</div></div>
+    </div>
+    <div class="status info" style="margin-bottom:12px;">ℹ️ Brondol 1.820 kg dari Mahap tidak dihitung di modal. Dicatat sebagai tambahan fisik saja.</div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 6.554.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Upah Muat Nambah Eko</span><span class="rv">Rp 60.000</span></div>
+      <div class="row"><span class="rl dim">Lansir Agus</span><span class="rv">Rp 70.000</span></div>
+      <div class="row"><span class="rl dim">Rokok Bapak</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Es</span><span class="rv">Rp 10.000</span></div>
+      <div class="row"><span class="rl dim">Dapur Rumah</span><span class="rv">Rp 350.000</span></div>
+      <div class="row"><span class="rl dim">Bensin</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Mak Ara (Operasional)</span><span class="rv">Rp 160.000</span></div>
+      <div class="row"><span class="rl strike">Piutang Dilak + Mkn</span><span class="rv muted">Rp 2.100.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Masuk Modal</span><span class="rv orange big">Rp 7.954.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 2.125 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.743 / kg</span></div>
+    </div>
+    <div class="status warn">⚠️ Total pengeluaran REAL kas: Rp 10.054.000 (termasuk piutang Dilak Rp 2.100.000 exclude dari modal)</div>
+  </div>
+
+  <!-- 5. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ir">📉</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual Mandor − Modal rata-rata/kg</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Harga jual ke Mandor</span><span class="rv blue">Rp 3.900 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.743 / kg</span></div>
+      <div class="row"><span class="rl dim">Gap kasar per kg (jual − modal)</span><span class="rv green">+ Rp 157 / kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl dim">Bruto dikirim ke Mandor</span><span class="rv">2.370 kg</span></div>
+      <div class="row"><span class="rl dim">Netto timbang Mandor (−5%)</span><span class="rv">2.251,5 kg</span></div>
+      <div class="row"><span class="rl dim">Pendapatan (2.251,5 × Rp 3.900)</span><span class="rv blue">Rp 8.780.850</span></div>
+      <div class="row"><span class="rl dim">Modal muatan (2.370 × Rp 3.743)</span><span class="rv orange">Rp 8.870.910</span></div>
+    </div>
+    <div class="gap-box red">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Estimasi Gap Muatan ini</div>
+          <div class="gv">− Rp 90.060</div>
+          <div class="gu">dari 2.370 kg bruto</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Gap per kg netto</div>
+          <div class="gv">− Rp 40 / kg</div>
+          <div class="gs">netto 2.251,5 kg</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Belum final.</strong> Brondol Mahap 1.820 kg belum dihitung di modal. Estimasi belum dikurangi penyusutan.</div>
+    </div>
+  </div>
+
+  <!-- 6. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">D</div>
+        <div class="si"><div class="sn">Dilak (Brondol)</div><div class="sd">📍 Mandor · Ongkos Rp 0</div></div>
+        <div><div class="st-val">2.370</div><div class="st-unit">kg bruto</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">2.370 kg</div></div>
+    </div>
+    <div class="status info">ℹ️ Netto timbang Mandor estimasi: <strong>2.251,5 kg</strong> (bruto 2.370 × 95%)</div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Lamau · 08 Mei 2026</div>
+</div>
+</div><!-- end lamau -->
+
+<!-- ==================== PAGE: NANGA TAMON ==================== -->`,
+  taman_08: `<div class="lap-wrap">
+  <button class="back-btn" onclick="showDashboard()">← Kembali ke Dashboard</button>
+
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Nanga Taman</div>
+    <div class="header-date" style="margin-top:6px;">📅 Rabu, 6 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 Tujuan: RAM Lamau</span>
+      <span class="htag">📦 Grading Brondol 5%</span>
+      <span class="htag">💰 Harga RAM Lamau Rp 3.850/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi green">
+      <div class="kpi-label">Estimasi Untung</div>
+      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Agus + Ardi</div>
+      <div class="kpi-val" style="font-size:17px;">+Rp 471.940</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.710</div>
+      <div class="kpi-unit">Rp/kg</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">2.440</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">3.371 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+
+  <!-- 1. Keuangan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 3.844.400</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 15.000.000</span></div>
+      <div class="row"><span class="rl dim">Pengembalian (Argun)</span><span class="rv">Rp 1.006.820</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 19.851.220</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran</span><span class="rv red">− Rp 13.107.600</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 6.743.620</span></div>
+    </div>
+    <div class="status ok">✅ BALANCE — Sesuai laporan admin <span style="font-weight:400;font-size:11px;">&nbsp;(selisih Rp 20 = pembulatan)</span></div>
+  </div>
+
+  <!-- 2. Harga Beli -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon io">🌾</div><div><div class="sec-title">2. Harga Beli Buah ke Petani</div><div class="sec-sub">Total bayar TBS ÷ Netto pembelian</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembayaran TBS</span><span class="rv">Rp 11.169.000</span></div>
+      <div class="row"><span class="rl dim">Tunggakan beli buah</span><span class="rv green">Nihil (Rp 0)</span></div>
+      <div class="row"><span class="rl dim">Netto pembelian</span><span class="rv blue">3.371 kg</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Harga Beli / kg</span><span class="rv orange big">Rp 3.313 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 3. Restan -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon it">📦</div><div><div class="sec-title">3. Restan Buah</div><div class="sec-sub">Bruto + Restan kemarin − Kirim ke tujuan</div></div></div>
+    <div class="restan">
+      <div class="rb"><div class="rb-label">Bruto Hari Ini</div><div class="rb-val">3.560</div><div class="rb-unit">kg</div></div>
+      <div class="op">+</div>
+      <div class="rb"><div class="rb-label">Restan Kemarin</div><div class="rb-val">2.046</div><div class="rb-unit">kg</div></div>
+      <div class="op">−</div>
+      <div class="rb"><div class="rb-label">Kirim Lamau</div><div class="rb-val">3.166</div><div class="rb-unit">kg</div></div>
+      <div class="op">=</div>
+      <div class="rb res"><div class="rb-label">Sisa Restan</div><div class="rb-val">2.440</div><div class="rb-unit">kg di lapangan</div></div>
+    </div>
+  </div>
+
+  <!-- 4. Modal -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ip">🧮</div><div><div class="sec-title">4. Modal Rata-Rata / kg</div><div class="sec-sub">(Operasional + TBS) ÷ Netto + Ongkos supir</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Pembelian TBS</span><span class="rv">Rp 11.169.000</span></div>
+      <div class="row"><span class="rl dim">Upah Pemuat</span><span class="rv">Rp 184.000</span></div>
+      <div class="row"><span class="rl dim">Uang Makan</span><span class="rv">Rp 100.000</span></div>
+      <div class="row"><span class="rl dim">Minyak Mobil</span><span class="rv">Rp 300.000</span></div>
+      <div class="row"><span class="rl dim">Upah Lansir Rahmi</span><span class="rv">Rp 104.000</span></div>
+      <div class="row"><span class="rl dim">Upah Bongkar</span><span class="rv">Rp 20.000</span></div>
+      <div class="row"><span class="rl dim">Beli Es</span><span class="rv">Rp 10.000</span></div>
+      <div class="row"><span class="rl dim">Lansir Lamau</span><span class="rv">Rp 70.000</span></div>
+      <div class="row"><span class="rl dim">Uanges Ardi</span><span class="rv">Rp 50.000</span></div>
+      <div class="row"><span class="rl dim">Gaji Pak Ali</span><span class="rv">Rp 500.000</span></div>
+      <div class="row"><span class="rl strike">Pinjaman Anton Supir</span><span class="rv muted">Rp 600.000 &nbsp;<span class="xtag">EXCLUDE</span></span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Dihitung</span><span class="rv orange big">Rp 12.507.000</span></div>
+      <div class="row"><span class="rl dim">÷ Netto 3.371 kg + Ongkos Rp 0</span><span class="rv" style="color:#d97706;font-size:16px;font-weight:800;">= Rp 3.710 / kg</span></div>
+    </div>
+  </div>
+
+  <!-- 5. Gap -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ig">📈</div><div><div class="sec-title">5. Gap & Keuntungan</div><div class="sec-sub">Harga jual RAM Lamau − Modal rata-rata/kg</div></div></div>
+    <div class="sec-body" style="padding-bottom:6px;">
+      <div class="row"><span class="rl dim">Harga jual ke RAM Lamau</span><span class="rv blue">Rp 3.850 / kg</span></div>
+      <div class="row"><span class="rl dim">Modal rata-rata</span><span class="rv orange">Rp 3.710 / kg</span></div>
+    </div>
+    <div class="gap-box">
+      <div class="gap-top">
+        <div class="gap-left">
+          <div class="gl">Keuntungan per kg</div>
+          <div class="gv">+ Rp 140</div>
+          <div class="gu">per kilogram</div>
+        </div>
+        <div class="gap-right">
+          <div class="gl">Estimasi total hari ini</div>
+          <div class="gv">+Rp 471.940</div>
+          <div class="gs">dari 3.371 kg netto</div>
+        </div>
+      </div>
+      <div class="gap-note">⚠️ <strong>Catatan Penting:</strong> Angka keuntungan ini <strong>belum final</strong>. Belum memperhitungkan <strong>penyusutan berat buah</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 6. Supir -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon ib">🚛</div><div><div class="sec-title">6. Rekap Supir & Tonase</div><div class="sec-sub">Siapa saja yang angkut dan ke mana tujuannya</div></div></div>
+    <div class="supir-list">
+      <div class="supir-row">
+        <div class="av">A</div>
+        <div class="si"><div class="sn">Agus</div><div class="sd">📍 RAM Lamau · 33,5% dari total</div></div>
+        <div><div class="st-val">1.060</div><div class="st-unit">kg</div></div>
+      </div>
+      <div class="supir-row">
+        <div class="av">A</div>
+        <div class="si"><div class="sn">Ardi</div><div class="sd">📍 RAM Lamau · 66,5% dari total</div></div>
+        <div><div class="st-val">2.106</div><div class="st-unit">kg</div></div>
+      </div>
+      <div class="supir-total"><div class="supir-total-label">Total Tonase Dikirim</div><div class="supir-total-val">3.166 kg</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Lamau Persada Mandiri · RAM Nanga Taman · 06 Mei 2026</div>
+</div>
+</div><!-- end nangatamon -->`,
+  taman_06: `
+<div class="lap-wrap">
+  <div class="header">
+    <div class="co-name">Lamau Persada Mandiri</div>
+    <div class="ram-name">RAM Nanga Taman</div>
+    <div class="header-date" style="margin-top:6px;">📅 Rabu, 6 Mei 2026</div>
+    <div class="header-tags">
+      <span class="htag">📍 Tujuan: RAM Lamau</span>
+      <span class="htag">📦 Grading Brondol 5%</span>
+      <span class="htag">💰 Harga RAM Lamau Rp 3.850/kg</span>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;">Dianalisis oleh</div>
+      <div style="font-size:13px;font-weight:700;color:#c8daff;">Rizky Karman</div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi green">
+      <div class="kpi-label">Estimasi Untung</div>
+      <div class="kpi-label" style="color:#16a34a;font-size:10px;margin-bottom:4px;text-transform:none;letter-spacing:0;font-weight:800;">Agus + Ardi</div>
+      <div class="kpi-val" style="font-size:17px;">+Rp 471.940</div>
+      <div class="kpi-unit">Belum final · susut belum dihitung</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-label">Modal Rata²/kg</div>
+      <div class="kpi-val">3.710</div>
+      <div class="kpi-unit">Rp/kg</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Sisa Restan</div>
+      <div class="kpi-val">2.440</div>
+      <div class="kpi-unit">kg di lapangan</div>
+    </div>
+  </div>
+  <div style="background:#fff;border-radius:11px;padding:9px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,0.05);">
+    <div style="font-size:11px;color:#8a96a8;font-weight:600;">📊 Netto Pembelian TBS Hari Ini</div>
+    <div style="font-size:15px;font-weight:800;color:#2563eb;">3.371 <span style="font-size:11px;font-weight:600;color:#8a96a8;">kg</span></div>
+  </div>
+  <div class="section"><div class="sec-head"><div class="sec-icon ib">💳</div><div><div class="sec-title">1. Keuangan</div><div class="sec-sub">Cek balance pemasukan & pengeluaran</div></div></div>
+    <div class="sec-body">
+      <div class="row"><span class="rl dim">Sisa deposit kemarin</span><span class="rv">Rp 3.844.400</span></div>
+      <div class="row"><span class="rl dim">Deposit masuk</span><span class="rv">Rp 15.000.000</span></div>
+      <div class="row"><span class="rl dim">Pengembalian (Argun)</span><span class="rv">Rp 1.006.820</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Total Deposit</span><span class="rv blue big">Rp 19.851.220</span></div>
+      <div class="row"><span class="rl dim">Total pengeluaran</span><span class="rv red">− Rp 13.107.600</span></div>
+      <div class="divline"></div>
+      <div class="row"><span class="rl" style="font-weight:700;">Sisa Deposit</span><span class="rv green big">Rp 6.743.620</span></div>
+    </div>
+    <div class="status ok">✅ BALANCE — Sesuai laporan admin (selisih Rp 20 = pembulatan)</div>
+  </div>
+  <div class="footer">Lamau Persada Mandiri · RAM Nanga Taman · 06 Mei 2026</div>
+</div>
+`,
+};
+
+// ============================================================
+// HELPER
+// ============================================================
+function rp(v) {
+  return 'Rp ' + Math.abs(v).toLocaleString('id-ID');
 }
 
+function latestDate() {
+  return Object.keys(DB).sort().reverse()[0];
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('load', function() {
+  // Populate arsip dropdown
+  const sel = document.getElementById('arsipSelect');
+  Object.keys(DB).sort().reverse().forEach(k => {
+    const opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = DB[k].label;
+    sel.appendChild(opt);
+  });
+
+  // Load tanggal terbaru otomatis
+  const latest = latestDate();
+  loadTanggal(latest);
+  sel.value = latest;
+
+  // Update topbar date
+  document.getElementById('topbarDate').textContent = DB[latest].label;
+});
+
+// ============================================================
+// LOAD TANGGAL
+// ============================================================
+let currentDate = null;
+
+function loadTanggal(dateKey) {
+  if (!dateKey || !DB[dateKey]) return;
+  currentDate = dateKey;
+  const d = DB[dateKey];
+
+  // Update topbar
+  document.getElementById('topbarDate').textContent = d.label;
+
+  // Update KAS tab
+  document.getElementById('valSisaKas').textContent = rp(d.kas.sisaKas);
+  document.getElementById('valKeluar').textContent = rp(d.kas.totalKeluar);
+  const totalDep = d.kas.deposit.lamau + d.kas.deposit.mahap + d.kas.deposit.taman;
+  document.getElementById('valDeposit').textContent = rp(totalDep);
+
+  // Update modal KAS
+  document.getElementById('modalKasContent').innerHTML = `
+    <div class="mrow"><span class="ml">Sisa kas kemarin</span><span class="mr">${rp(d.kas.sisaKemarin)}</span></div>
+    ${d.kas.pinjaman > 0 ? `<div class="mrow"><span class="ml">+ Pinjaman masuk (wajib kembali)</span><span class="mr">${rp(d.kas.pinjaman)}</span></div>` : ''}
+    <div class="mrow"><span class="ml">+ Uang masuk hari ini</span><span class="mr green">+ ${rp(d.kas.uangMasuk)}</span></div>
+    <div class="mrow"><span class="ml">− Total pengeluaran</span><span class="mr red">− ${rp(d.kas.totalKeluar)}</span></div>
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Sisa Kas Hari Ini</div><div class="mtv">${rp(d.kas.sisaKas)}</div></div>
+  `;
+
+  // Update modal PENGELUARAN
+  function catHTML(items, color, bg, border) {
+    if (!items || items.length === 0) return '';
+    const total = items.reduce((s,i) => s+i.v, 0);
+    const rows = items.map(i => `<div class="cat-item"><span>${i.n}</span><span class="cat-item-val">${rp(i.v)}</span></div>`).join('');
+    return `<div style="background:${bg};border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid ${border};">
+      <div class="cat-head" style="color:${color};">${rows.length ? '' : ''}${getCatLabel(bg)}</div>
+      ${rows}
+      <div class="cat-sub"><span>Subtotal</span><span style="color:${color};">${rp(total)}</span></div>
+    </div>`;
+  }
+  function getCatLabel(bg) {
+    const m = {'#F7F9FC':'👤 Pribadi','#FFF9E6':'⚠️ Hutang / Kewajiban','#EBF3FF':'🏦 Deposit RAM','#F3EEFF':'🏭 Operasional','#E8FAF2':'🌿 Pembayaran TBS / Brondol'};
+    return m[bg] || '';
+  }
+
+  const p = d.kas.pengeluaran;
+  const totalKeluar = [...p.pribadi,...p.hutang,...p.depositRam,...p.operasional,...p.pembayaran].reduce((s,i)=>s+i.v,0);
+
+  document.getElementById('modalKeluarContent').innerHTML = `
+    ${buildCat('👤 Pribadi',       p.pribadi,    '#2563eb','#F7F9FC','#dce8f8')}
+    ${buildCat('⚠️ Hutang / Kewajiban', p.hutang, '#d97706','#FFF9E6','#fcd34d')}
+    ${buildCat('🏦 Deposit RAM',   p.depositRam, '#2563eb','#EBF3FF','#bfdbfe')}
+    ${buildCat('🏭 Operasional',   p.operasional,'#7c3aed','#F3EEFF','#d8b4fe')}
+    ${buildCat('🌿 Pembayaran TBS / Brondol', p.pembayaran,'#16a34a','#E8FAF2','#bbf7d0')}
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Total Pengeluaran</div><div class="mtv">${rp(totalKeluar)}</div></div>
+  `;
+
+  // Update modal DEPOSIT
+  document.getElementById('modalDepositContent').innerHTML = `
+    <div class="dep-item"><div class="dep-name">📍 RAM Lamau</div><div class="dep-val">${rp(d.kas.deposit.lamau)}</div></div>
+    <div class="dep-item"><div class="dep-name">📍 RAM Mahap</div><div class="dep-val">${rp(d.kas.deposit.mahap)}</div></div>
+    <div class="dep-item"><div class="dep-name">📍 RAM Taman</div><div class="dep-val">${rp(d.kas.deposit.taman)}</div></div>
+    <div class="mdiv"></div>
+    <div class="mtotal"><div class="mtl">Total Deposit Terikat</div><div class="mtv">${rp(totalDep)}</div></div>
+  `;
+
+  // Update RAM CARDS
+  renderRamCards(d.ram, d.label);
+
+  // Update arsip info
+  document.getElementById('arsipInfo').innerHTML = `
+    <div style="background:#EBF3FF;border-radius:10px;padding:10px 14px;border:1px solid #bfdbfe;font-size:12px;color:#2563eb;font-weight:600;">
+      📅 Menampilkan data: ${d.label}
+    </div>
+  `;
+}
+
+function buildCat(label, items, color, bg, border) {
+  if (!items || items.length === 0) return '';
+  const total = items.reduce((s,i) => s+i.v, 0);
+  const rows = items.map(i => `<div class="cat-item"><span>${i.n}</span><span class="cat-item-val">${rp(i.v)}</span></div>`).join('');
+  return `<div style="background:${bg};border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid ${border};">
+    <div class="cat-head" style="color:${color};">${label}</div>
+    ${rows}
+    <div class="cat-sub"><span>Subtotal</span><span style="color:${color};">${rp(total)}</span></div>
+  </div>`;
+}
+
+// ============================================================
+// RAM CARDS
+// ============================================================
+function renderRamCards(ramList, label) {
+  const container = document.getElementById('ramCards');
+  document.getElementById('ramFooter').textContent = 'Lamau Persada Mandiri · ' + label;
+
+  container.innerHTML = ramList.map(r => `
+    <div class="ram-card ${r.status}">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-header">
+          <div>
+            <div class="ram-title">${r.nama}</div>
+            <div class="ram-meta">📍 ${r.tujuan}</div>
+          </div>
+          <div class="status-badge">${r.status==='untung'?'✅ Untung':r.status==='rugi'?'❌ Rugi':'⚠️ Tipis'}</div>
+        </div>
+        <div class="card-kpi">
+          <div class="ck">
+            <div class="ck-label">Est. ${r.status==='rugi'?'Gap':'Untung'}</div>
+            <div class="ck-val ${r.status==='untung'?'green':r.status==='rugi'?'red':'amber'}">${r.untung>=0?'+':''}${rp(r.untung)}</div>
+            <div class="ck-unit">⚠️ Belum potong susut</div>
+          </div>
+          <div class="ck">
+            <div class="ck-label">Modal/kg</div>
+            <div class="ck-val amber">${r.modal.toLocaleString('id-ID')}</div>
+            <div class="ck-unit">Rp/kg</div>
+          </div>
+          <div class="ck">
+            <div class="ck-label">Sisa Restan</div>
+            <div class="ck-val blue">${r.restan.toLocaleString('id-ID')}</div>
+            <div class="ck-unit">kg</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="font-size:11px;color:#8a96a8;">🚛 ${r.supir.join(' · ')} &nbsp;·&nbsp; 💰 ${r.harga}</div>
+          <button class="detail-btn" onclick="bukaLaporan('${r.nama}','${r.key}')">Detail →</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// BUKA LAPORAN DETAIL
+// ============================================================
 function bukaLaporan(nama, key) {
-  document.getElementById('laporan-title-text').textContent = nama;
-  const content = laporanHTML[key] || '<p style="padding:20px;color:#dc2626;">Data tidak ditemukan</p>';
-  document.getElementById('laporan-body-content').innerHTML =
-    '<style>' + laporanCSS + '</style><div class="lap-wrap">' + content + '</div>';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('page-laporan').style.display = 'block';
-  window.scrollTo(0,0);
+  const content = LAPORAN[key];
+  if (!content) {
+    alert('Laporan ' + nama + ' belum tersedia.');
+    return;
+  }
+  document.getElementById('laporanTitleBar').textContent = nama;
+  document.getElementById('laporanBodyContent').innerHTML =
+    '<style>' + LAPORAN_CSS + '</style><div class="lap-wrap">' + content + '</div>';
+
+document.getElementById(‘app’).style.display = ‘none’;
+document.getElementById(‘page-laporan’).classList.add(‘active’);
+window.scrollTo(0,0);
 }
 
 function tutupLaporan() {
-  document.getElementById('page-laporan').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  window.scrollTo(0,0);
+document.getElementById(‘page-laporan’).classList.remove(‘active’);
+document.getElementById(‘app’).style.display = ‘block’;
+window.scrollTo(0,0);
 }
 
+// ============================================================
+// TAB SWITCH
+// ============================================================
+function showTab(name, btn) {
+document.querySelectorAll(’.tab-content’).forEach(t => t.classList.remove(‘active’));
+document.querySelectorAll(’.tab-btn’).forEach(b => b.classList.remove(‘active’));
+document.getElementById(‘tab-’ + name).classList.add(‘active’);
+btn.classList.add(‘active’);
+window.scrollTo(0,0);
+}
+
+// ============================================================
+// MODAL
+// ============================================================
 function openModal(id) {
-  document.getElementById(id).classList.add('show');
-  document.body.style.overflow = 'hidden';
+document.getElementById(id).classList.add(‘show’);
+document.body.style.overflow = ‘hidden’;
 }
-
 function closeModal(id) {
-  document.getElementById(id).classList.remove('show');
-  document.body.style.overflow = '';
+document.getElementById(id).classList.remove(‘show’);
+document.body.style.overflow = ‘’;
 }
-
 function closeModalOutside(e, id) {
-  if (e.target.classList.contains('modal')) closeModal(id);
-}
-
-function loadArsip(dateKey) {
-  if (!dateKey) return;
-  const content = document.getElementById('arsip-content');
-  content.innerHTML = '<div style="text-align:center;padding:20px;color:#8a96a8;font-size:12px;">📅 Arsip ' + dateKey + ' — Laporan belum tersedia. Upload laporan untuk tanggal ini dulu.</div>';
+if (e.target.classList.contains(‘modal’)) closeModal(id);
 }
 </script>
+
 </body>
 </html>
