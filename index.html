@@ -264,55 +264,55 @@ function bukaDetail(nama, key) {
   document.getElementById('detailTitle').textContent = nama;
   document.getElementById('detailBody').innerHTML = '<style>' + LCSS + '</style><div class="lap-wrap">' + LH[key] + '</div>';
 
-document.getElementById(‘pg-main’).style.display = ‘none’;
-document.getElementById(‘pg-detail’).classList.add(‘on’);
+document.getElementById('pg-main').style.display = 'none';
+document.getElementById('pg-detail').classList.add('on');
 window.scrollTo(0, 0);
 }
 
-document.getElementById(‘backBtn’).addEventListener(‘click’, function() {
-document.getElementById(‘pg-detail’).classList.remove(‘on’);
-document.getElementById(‘pg-main’).style.display = ‘block’;
+document.getElementById('backBtn').addEventListener('click', function() {
+document.getElementById('pg-detail').classList.remove('on');
+document.getElementById('pg-main').style.display = 'block';
 window.scrollTo(0, 0);
 });
 
-document.querySelectorAll(’.tab-btn’).forEach(function(btn) {
-btn.addEventListener(‘click’, function() {
-document.querySelectorAll(’.tab-content’).forEach(function(t) { t.classList.remove(‘active’); });
-document.querySelectorAll(’.tab-btn’).forEach(function(b) { b.classList.remove(‘active’); });
-document.getElementById(‘tab-’ + btn.getAttribute(‘data-tab’)).classList.add(‘active’);
-btn.classList.add(‘active’);
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+btn.addEventListener('click', function() {
+document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('active');
+btn.classList.add('active');
 window.scrollTo(0, 0);
 });
 });
 
-document.querySelectorAll(’.kas-card’).forEach(function(card) {
-card.addEventListener(‘click’, function() {
-document.getElementById(card.getAttribute(‘data-modal’)).classList.add(‘on’);
-document.body.style.overflow = ‘hidden’;
+document.querySelectorAll('.kas-card').forEach(function(card) {
+card.addEventListener('click', function() {
+document.getElementById(card.getAttribute('data-modal')).classList.add('on');
+document.body.style.overflow = 'hidden';
 });
 });
 
-document.querySelectorAll(’.mclose’).forEach(function(btn) {
-btn.addEventListener(‘click’, function() {
-document.getElementById(btn.getAttribute(‘data-close’)).classList.remove(‘on’);
-document.body.style.overflow = ‘’;
+document.querySelectorAll('.mclose').forEach(function(btn) {
+btn.addEventListener('click', function() {
+document.getElementById(btn.getAttribute('data-close')).classList.remove('on');
+document.body.style.overflow = '';
 });
 });
 
-document.querySelectorAll(’.modal’).forEach(function(m) {
-m.addEventListener(‘click’, function(e) {
-if (e.target === m) { m.classList.remove(‘on’); document.body.style.overflow = ‘’; }
+document.querySelectorAll('.modal').forEach(function(m) {
+m.addEventListener('click', function(e) {
+if (e.target === m) { m.classList.remove('on'); document.body.style.overflow = ''; }
 });
 });
 
-document.getElementById(‘arsipSel’).addEventListener(‘change’, function() {
+document.getElementById('arsipSel').addEventListener('change', function() {
 loadDate(this.value);
 });
 
 var keys = Object.keys(DB).sort().reverse();
-var sel = document.getElementById(‘arsipSel’);
+var sel = document.getElementById('arsipSel');
 for (var i = 0; i < keys.length; i++) {
-var o = document.createElement(‘option’);
+var o = document.createElement('option');
 o.value = keys[i]; o.textContent = DB[keys[i]].label;
 sel.appendChild(o);
 }
