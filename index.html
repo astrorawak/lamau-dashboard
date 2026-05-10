@@ -286,20 +286,15 @@ var DB = {
       "sisaKemarin": 46805000,
       "uangMasuk": 100000000,
       "pinjaman": 0,
-      "totalKeluar": 139537500,
-      "sisaKas": 7267500,
+      "totalKeluar": 140537500,
+      "sisaKas": 6267500,
       "deposit": {
         "lamau": 13105000,
         "mahap": 100000000,
         "taman": 25000000
       },
       "pengeluaran": {
-        "pribadi": [
-          {
-            "n": "Mamak (Pribadi)",
-            "v": 1000000
-          }
-        ],
+        "pribadi": [],
         "hutang": [],
         "depositRam": [
           {
@@ -333,7 +328,7 @@ var DB = {
         "nama": "RAM Mahap",
         "tujuan": "PAM - Grading Tinggi",
         "harga": "Rp 3.500/kg",
-        "untung": -16386477,
+        "untung": -14390770,
         "modal": 3249,
         "restan": 4590,
         "supir": [
@@ -420,7 +415,7 @@ function loadDate(key) {
     cat.items.forEach(function(item){kl+='<div class="citem"><span>'+item.n+'</span><span class="cval">'+rp(item.v)+'</span></div>';});
     kl += '<div class="csub"><span>Subtotal</span><span style="color:'+cat.color+';">'+rp(sub)+'</span></div></div>';
   });
-  kl += '<div class="mdiv"></div><div class="mtot"><div class="mtl">Total Pengeluaran</div><div class="mtv">'+rp(gt)+'</div></div>';
+  kl += '<div class="mdiv"></div><div class="mtot"><div class="mtl">Total Pengeluaran</div><div class="mtv">'+rp(d.kas.totalKeluar)+'</div></div>';
   document.getElementById('mc-kel').innerHTML = kl;
 
   // Modal Deposit
