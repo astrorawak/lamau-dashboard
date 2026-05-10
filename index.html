@@ -423,7 +423,7 @@ function loadDate(key) {
     kl += '<div class="cbox" style="background:'+cat.bg+';border:1px solid '+cat.border+';">';
     kl += '<div class="chead" style="color:'+cat.color+';">'+cat.label+'</div>';
     cat.items.forEach(function(item){kl+='<div class="citem"><span>'+item.n+'</span><span class="cval">'+rp(item.v)+'</span></div>';});
-    kl += '<div class="csub"><span>Subtotal</span><span style="color:'+cat.color+';">'+rp(sub)+'</span></div></div>';
+    kl += '</div>';
   });
   kl += '<div class="mdiv"></div><div class="mtot"><div class="mtl">Total Pengeluaran</div><div class="mtv">'+rp(d.kas.totalKeluar)+'</div></div>';
   document.getElementById('mc-kel').innerHTML = kl;
