@@ -17,15 +17,13 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F0F4F8;color:#1a2333
 .date-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;color:#c8daff}
 .analyst{font-size:11px;font-weight:700;color:#a8c4ff}
 .tab-nav{display:flex;background:#fff;border-bottom:2px solid #e8ecf4;position:sticky;top:0;z-index:100}
-.tab-btn{flex:1;padding:14px 8px;border:none;background:none;font-size:11px;font-weight:700;color:#8a96a8;cursor:pointer;border-bottom:3px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;text-transform:uppercase;letter-spacing:.6px;transition:all .25s}
+.tab-btn{flex:1;padding:14px 8px;border:none;background:none;font-size:11px;font-weight:700;color:#8a96a8;cursor:pointer;border-bottom:3px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;text-transform:uppercase;letter-spacing:.6px}
 .tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
 .tab-content{display:none;padding-bottom:30px}
-.tab-content.active{display:block;animation:fadeUp .3s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active{display:block}
 .kas-section{padding:12px 14px 0}
 .kas-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.kas-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid #e8ecf4;cursor:pointer;transition:transform .15s}
-.kas-card:active{transform:scale(.97)}
+.kas-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid #e8ecf4;cursor:pointer}
 .kas-card.full{grid-column:1/-1}
 .kas-icon{font-size:24px;margin-bottom:6px}
 .kas-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8a96a8;margin-bottom:8px}
@@ -54,206 +52,254 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F0F4F8;color:#1a2333
 .ck-val.green{color:#16a34a}.ck-val.red{color:#dc2626}.ck-val.amber{color:#d97706}.ck-val.blue{color:#2563eb}
 .ck-unit{font-size:9px;color:#8a96a8;font-weight:600;margin-top:3px}
 .card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:11px;border-top:1px solid #f0f2f6}
-.detail-btn{font-size:12px;font-weight:700;color:#fff;background:#2563eb;padding:7px 16px;border-radius:20px;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:none;display:inline-block}
+.detail-btn{font-size:12px;font-weight:700;color:#fff;background:#2563eb;padding:7px 16px;border-radius:20px;text-decoration:none;display:inline-block}
 .arsip-wrap{padding:12px 14px}
-.arsip-wrap select{width:100%;padding:12px 14px;border:1px solid #e8ecf4;border-radius:12px;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;color:#1a2333;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.05);cursor:pointer}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200}
+.arsip-wrap select{width:100%;padding:12px 14px;border:1px solid #e8ecf4;border-radius:12px;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;color:#1a2333;background:#fff}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:200}
 .modal.on{display:flex;align-items:flex-end}
-.mbox{background:#fff;width:100%;border-radius:24px 24px 0 0;padding:24px 18px 30px;max-height:88vh;overflow-y:auto;animation:slideUp .28s ease}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.mclose{float:right;background:#f0f2f6;border:none;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;color:#8a96a8;font-family:sans-serif}
+.mbox{background:#fff;width:100%;border-radius:24px 24px 0 0;padding:24px 18px 30px;max-height:88vh;overflow-y:auto}
+.mclose{float:right;background:#f0f2f6;border:none;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;color:#8a96a8}
 .mtitle{font-size:17px;font-weight:800;color:#1a2333;margin-bottom:16px}
 .mrow{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #f0f2f6;font-size:13px}
-.mrow:last-child{border-bottom:none}
 .ml{color:#4a5568;font-weight:500}.mr{font-weight:700;color:#1a2333}
 .mr.g{color:#16a34a}.mr.r{color:#dc2626}
-.mdiv{height:1px;background:linear-gradient(90deg,#e0e5ef,transparent);margin:8px 0}
+.mdiv{height:1px;background:#e0e5ef;margin:8px 0}
 .mtot{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#1a2f5e;border-radius:10px;margin-top:12px}
 .mtl{font-size:12px;font-weight:600;color:#a8c4ff}
 .mtv{font-size:16px;font-weight:800;color:#fff}
 .cbox{border-radius:10px;padding:10px 12px;margin-bottom:10px}
 .chead{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.citem{display:flex;justify-content:space-between;padding:7px 0;font-size:12px;color:#4a5568;border-bottom:1px solid rgba(0,0,0,.04)}
+.citem{display:flex;justify-content:space-between;padding:7px 0;font-size:12px;color:#4a5568}
 .cval{font-weight:700;color:#1a2333}
 .csub{display:flex;justify-content:space-between;padding:7px 0 0;font-size:12px;font-weight:700;border-top:1px solid rgba(0,0,0,.08);margin-top:4px}
 .ditem{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#F7F9FC;border-radius:10px;margin-bottom:7px;border:1px solid #eef0f5}
 .dname{font-size:12px;font-weight:700;color:#1a2333}
 .dval{font-size:14px;font-weight:800;color:#2563eb}
-.footer{text-align:center;padding:16px;font-size:10px;color:#b0b8c6;font-weight:500;letter-spacing:.5px}
+.footer{text-align:center;padding:16px;font-size:10px;color:#b0b8c6;font-weight:500}
 </style>
 </head>
 <body>
-<div id="app">
-  <div class="topbar">
-    <div class="co-badge">Lamau Persada Mandiri</div>
-    <div class="dash-title">Dashboard Usaha</div>
-    <div class="topbar-row">
-      <div class="date-badge">&#128197; <span id="topDate">-</span></div>
-      <div class="analyst">Rizky Karman</div>
-    </div>
+<div class="topbar">
+  <div class="co-badge">Lamau Persada Mandiri</div>
+  <div class="dash-title">Dashboard Usaha</div>
+  <div class="topbar-row">
+    <div class="date-badge">📅 <span id="topDate">-</span></div>
+    <div class="analyst">Rizky Karman</div>
   </div>
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('kas',this)">&#128176; Kas</button>
-    <button class="tab-btn" onclick="showTab('ram',this)">&#128203; Laporan RAM</button>
-    <button class="tab-btn" onclick="showTab('arsip',this)">&#128197; Arsip</button>
-  </div>
-  <div id="tab-kas" class="tab-content active">
-    <div class="kas-section">
-      <div class="kas-cards">
-        <div class="kas-card" onclick="openM('m-kas')">
-          <div class="kas-icon">&#128176;</div>
-          <div class="kas-label">Sisa Kas Usaha</div>
-          <div class="kas-val green" id="vKas">-</div>
-          <div class="kas-sub">Tap untuk detail &#8250;</div>
-        </div>
-        <div class="kas-card" onclick="openM('m-kel')">
-          <div class="kas-icon">&#128202;</div>
-          <div class="kas-label">Pengeluaran Hari Ini</div>
-          <div class="kas-val red" id="vKel">-</div>
-          <div class="kas-sub">Tap untuk detail &#8250;</div>
-        </div>
-        <div class="kas-card full" onclick="openM('m-dep')">
-          <div class="kas-icon">&#127968;</div>
-          <div class="kas-label">Deposit Usaha - Terikat per RAM</div>
-          <div class="kas-val blue" id="vDep">-</div>
-          <div class="kas-sub">3 RAM - Tap untuk breakdown &#8250;</div>
-        </div>
+</div>
+<div class="tab-nav">
+  <button class="tab-btn active" data-tab="kas">💰 Kas</button>
+  <button class="tab-btn" data-tab="ram">📋 Laporan RAM</button>
+  <button class="tab-btn" data-tab="arsip">📅 Arsip</button>
+</div>
+
+<div id="tab-kas" class="tab-content active">
+  <div class="kas-section">
+    <div class="kas-cards">
+      <div class="kas-card" data-modal="m-kas">
+        <div class="kas-icon">💰</div>
+        <div class="kas-label">Sisa Kas Usaha</div>
+        <div class="kas-val green" id="vKas">-</div>
+        <div class="kas-sub">Tap untuk detail ›</div>
+      </div>
+      <div class="kas-card" data-modal="m-kel">
+        <div class="kas-icon">📊</div>
+        <div class="kas-label">Pengeluaran Hari Ini</div>
+        <div class="kas-val red" id="vKel">-</div>
+        <div class="kas-sub">Tap untuk detail ›</div>
+      </div>
+      <div class="kas-card full" data-modal="m-dep">
+        <div class="kas-icon">🏦</div>
+        <div class="kas-label">Deposit Usaha - Terikat per RAM</div>
+        <div class="kas-val blue" id="vDep">-</div>
+        <div class="kas-sub">3 RAM - Tap untuk breakdown ›</div>
       </div>
     </div>
-    <div class="footer">Lamau Persada Mandiri - Dashboard Usaha</div>
   </div>
-  <div id="tab-ram" class="tab-content">
-    <div class="sec-label">Laporan RAM Harian</div>
-    <div class="ram-cards" id="ramCards"></div>
-    <div class="footer" id="ramFoot">Lamau Persada Mandiri</div>
-  </div>
-  <div id="tab-arsip" class="tab-content">
-    <div class="arsip-wrap">
-      <select id="arsipSel" onchange="loadDate(this.value)">
-        <option value="">Pilih Tanggal Arsip</option>
-      </select>
-    </div>
-    <div id="arsipInfo" style="padding:0 14px 10px;"></div>
-    <div class="footer">Lamau Persada Mandiri - Arsip</div>
-  </div>
+  <div class="footer">Lamau Persada Mandiri - Dashboard Usaha</div>
 </div>
-<div id="m-kas" class="modal" onclick="if(event.target.id==='m-kas')closeM('m-kas')">
-  <div class="mbox"><button class="mclose" onclick="closeM('m-kas')">X</button>
+
+<div id="tab-ram" class="tab-content">
+  <div class="sec-label">Laporan RAM Harian</div>
+  <div class="ram-cards" id="ramCards"></div>
+  <div class="footer" id="ramFoot">Lamau Persada Mandiri</div>
+</div>
+
+<div id="tab-arsip" class="tab-content">
+  <div class="arsip-wrap">
+    <select id="arsipSel">
+      <option value="">Pilih Tanggal Arsip</option>
+    </select>
+  </div>
+  <div id="arsipInfo" style="padding:0 14px 10px;"></div>
+  <div class="footer">Lamau Persada Mandiri - Arsip</div>
+</div>
+
+<div id="m-kas" class="modal">
+  <div class="mbox"><button class="mclose" data-close="m-kas">✕</button>
   <div class="mtitle">Detail Sisa Kas</div><div id="mc-kas"></div></div>
 </div>
-<div id="m-kel" class="modal" onclick="if(event.target.id==='m-kel')closeM('m-kel')">
-  <div class="mbox"><button class="mclose" onclick="closeM('m-kel')">X</button>
+<div id="m-kel" class="modal">
+  <div class="mbox"><button class="mclose" data-close="m-kel">✕</button>
   <div class="mtitle">Detail Pengeluaran</div><div id="mc-kel"></div></div>
 </div>
-<div id="m-dep" class="modal" onclick="if(event.target.id==='m-dep')closeM('m-dep')">
-  <div class="mbox"><button class="mclose" onclick="closeM('m-dep')">X</button>
+<div id="m-dep" class="modal">
+  <div class="mbox"><button class="mclose" data-close="m-dep">✕</button>
   <div class="mtitle">Deposit per RAM</div><div id="mc-dep"></div></div>
 </div>
+
 <script>
-var DB = {"2026-05-08": {"label": "Jumat, 8 Mei 2026", "kas": {"sisaKemarin": 28865000, "uangMasuk": 40000000, "pinjaman": 15000000, "totalKeluar": 78160000, "sisaKas": 5705000, "deposit": {"lamau": 25500000, "mahap": 50000000, "taman": 15000000}, "pengeluaran": {"pribadi": [], "hutang": [{"n": "Pinjaman deposit (wajib kembali)", "v": 15000000}], "depositRam": [{"n": "Deposit Lamau", "v": 25500000}, {"n": "Deposit Mahap", "v": 50000000}, {"n": "Deposit Taman", "v": 15000000}], "operasional": [{"n": "Upah Pemuat", "v": 800000}, {"n": "Uang Makan", "v": 100000}, {"n": "Lansir Ropi DS", "v": 981000}, {"n": "Upah Muat Ropi DS", "v": 151000}, {"n": "Makan Ropi DS", "v": 100000}, {"n": "Makan Agus", "v": 50000}], "pembayaran": [{"n": "Pembayaran TBS Mahap", "v": 73869000}]}}, "ram": [{"nama": "RAM Mahap", "tujuan": "PAM - Grading 4%", "harga": "Rp 3.500/kg", "untung": 4874961, "modal": 3419, "restan": 16090, "supir": ["Hendi", "Jum", "Agus"], "status": "untung", "file": "laporan/mahap-08mei2026.html"}, {"nama": "RAM Lamau", "tujuan": "Mandor - Grading 5%", "harga": "Rp 3.900/kg", "untung": -90060, "modal": 3743, "restan": 4097, "supir": ["Dilak"], "status": "rugi", "file": "laporan/lamau-08mei2026.html"}, {"nama": "RAM Nanga Taman", "tujuan": "RAM Lamau - Grading 5%", "harga": "Rp 3.850/kg", "untung": 471940, "modal": 3710, "restan": 2440, "supir": ["Agus", "Ardi"], "status": "tipis", "file": "laporan/taman-08mei2026.html"}]}, "2026-05-09": {"label": "Sabtu, 9 Mei 2026", "kas": {"sisaKemarin": 67372000, "uangMasuk": 121049000, "pinjaman": 0, "totalKeluar": 141616000, "sisaKas": 46805000, "deposit": {"lamau": 25500000, "mahap": 50000000, "taman": 15000000}, "pengeluaran": {"pribadi": [{"n": "Bayar Cicilan Laptop Adek", "v": 2900000}, {"n": "TF Besi 15", "v": 664000}, {"n": "Bayar Link Mila", "v": 61000}], "hutang": [{"n": "Pinjaman Riko (Deposit Lamau)", "v": 500000}], "depositRam": [{"n": "Deposit Mahap", "v": 50000000}, {"n": "Deposit Nata (Lamau)", "v": 25000000}, {"n": "Deposit Taman", "v": 15000000}], "operasional": [{"n": "Loper 3 DT", "v": 902500}], "pembayaran": [{"n": "Bayar Moen Semalam (Brondol)", "v": 17861000}, {"n": "Bayar Moen Stlah Loper", "v": 28428000}]}}, "ram": [{"nama": "RAM Mahap", "tujuan": "PAM - Grading 4%", "harga": "Rp 3.500/kg", "untung": 4874961, "modal": 3419, "restan": 16090, "supir": ["Hendi", "Jum", "Agus"], "status": "untung", "file": "laporan/mahap-08mei2026.html"}, {"nama": "RAM Lamau", "tujuan": "Mandor - Grading 5%", "harga": "Rp 3.900/kg", "untung": -90060, "modal": 3743, "restan": 4097, "supir": ["Dilak"], "status": "rugi", "file": "laporan/lamau-08mei2026.html"}, {"nama": "RAM Nanga Taman", "tujuan": "RAM Lamau - Grading 5%", "harga": "Rp 3.850/kg", "untung": 471940, "modal": 3710, "restan": 2440, "supir": ["Agus", "Ardi"], "status": "tipis", "file": "laporan/taman-08mei2026.html"}]}};
-function rp(v){return 'Rp '+Math.abs(v).toLocaleString('id-ID');}
-function latest(){var keys=Object.keys(DB).sort();return keys[keys.length-1];}
-function loadDate(k){
-  if(!k||!DB[k])return;
-  var d=DB[k];
-  document.getElementById('topDate').textContent=d.label;
-  document.getElementById('vKas').textContent=rp(d.kas.sisaKas);
-  document.getElementById('vKel').textContent=rp(d.kas.totalKeluar);
-  var td=d.kas.deposit.lamau+d.kas.deposit.mahap+d.kas.deposit.taman;
-  document.getElementById('vDep').textContent=rp(td);
-  var h='';
-  h+='<div class="mrow"><span class="ml">Sisa kas kemarin</span><span class="mr">'+rp(d.kas.sisaKemarin)+'</span></div>';
-  if(d.kas.pinjaman>0){h+='<div class="mrow"><span class="ml">+ Pinjaman masuk</span><span class="mr">'+rp(d.kas.pinjaman)+'</span></div>';}
-  h+='<div class="mrow"><span class="ml">+ Uang masuk</span><span class="mr g">+ '+rp(d.kas.uangMasuk)+'</span></div>';
-  h+='<div class="mrow"><span class="ml">- Total pengeluaran</span><span class="mr r">- '+rp(d.kas.totalKeluar)+'</span></div>';
-  h+='<div class="mdiv"></div>';
-  h+='<div class="mtot"><div class="mtl">Sisa Kas Hari Ini</div><div class="mtv">'+rp(d.kas.sisaKas)+'</div></div>';
-  document.getElementById('mc-kas').innerHTML=h;
-  var cats=[
-    {l:'Pribadi',items:d.kas.pengeluaran.pribadi,c:'#2563eb',bg:'#EBF3FF',b:'#bfdbfe'},
-    {l:'Hutang / Kewajiban',items:d.kas.pengeluaran.hutang,c:'#d97706',bg:'#FFF9E6',b:'#fcd34d'},
-    {l:'Deposit RAM',items:d.kas.pengeluaran.depositRam,c:'#0891b2',bg:'#E0F7FA',b:'#a5f3fc'},
-    {l:'Operasional',items:d.kas.pengeluaran.operasional,c:'#7c3aed',bg:'#F3EEFF',b:'#d8b4fe'},
-    {l:'Pembayaran TBS / Brondol',items:d.kas.pengeluaran.pembayaran,c:'#16a34a',bg:'#E8FAF2',b:'#bbf7d0'}
+var DB = {"2026-05-08":{"label":"Jumat, 8 Mei 2026","kas":{"sisaKemarin":28865000,"uangMasuk":40000000,"pinjaman":15000000,"totalKeluar":78160000,"sisaKas":5705000,"deposit":{"lamau":25500000,"mahap":50000000,"taman":15000000},"pengeluaran":{"pribadi":[],"hutang":[{"n":"Pinjaman deposit (wajib kembali)","v":15000000}],"depositRam":[{"n":"Deposit Lamau","v":25500000},{"n":"Deposit Mahap","v":50000000},{"n":"Deposit Taman","v":15000000}],"operasional":[{"n":"Upah Pemuat","v":800000},{"n":"Uang Makan","v":100000},{"n":"Lansir Ropi DS","v":981000},{"n":"Upah Muat Ropi DS","v":151000},{"n":"Makan Ropi DS","v":100000},{"n":"Makan Agus","v":50000}],"pembayaran":[{"n":"Pembayaran TBS Mahap","v":73869000}]}},"ram":[{"nama":"RAM Mahap","tujuan":"PAM - Grading 4%","harga":"Rp 3.500/kg","untung":4874961,"modal":3419,"restan":16090,"supir":["Hendi","Jum","Agus"],"status":"untung","file":"laporan/dashboard_3ram_lpm.html"},{"nama":"RAM Lamau","tujuan":"Mandor - Grading 5%","harga":"Rp 3.900/kg","untung":-90060,"modal":3743,"restan":4097,"supir":["Dilak"],"status":"rugi","file":"laporan/dashboard_3ram_lpm.html"},{"nama":"RAM Nanga Taman","tujuan":"RAM Lamau - Grading 5%","harga":"Rp 3.850/kg","untung":471940,"modal":3710,"restan":2440,"supir":["Agus","Ardi"],"status":"tipis","file":"laporan/dashboard_3ram_lpm.html"}]},"2026-05-09":{"label":"Sabtu, 9 Mei 2026","kas":{"sisaKemarin":67372000,"uangMasuk":121049000,"pinjaman":0,"totalKeluar":141616000,"sisaKas":46805000,"deposit":{"lamau":25500000,"mahap":50000000,"taman":15000000},"pengeluaran":{"pribadi":[{"n":"Bayar Cicilan Laptop Adek","v":2900000},{"n":"TF Besi 15","v":664000},{"n":"Bayar Link Mila","v":61000}],"hutang":[{"n":"Pinjaman Riko (Deposit Lamau)","v":500000}],"depositRam":[{"n":"Deposit Mahap","v":50000000},{"n":"Deposit Nata (Lamau)","v":25000000},{"n":"Deposit Taman","v":15000000}],"operasional":[{"n":"Loper 3 DT","v":902500}],"pembayaran":[{"n":"Bayar Moen Semalam (Brondol)","v":17861000},{"n":"Bayar Moen Stlah Loper","v":28428000}]}},"ram":[{"nama":"RAM Mahap","tujuan":"PAM - Grading 4%","harga":"Rp 3.500/kg","untung":4874961,"modal":3419,"restan":16090,"supir":["Hendi","Jum","Agus"],"status":"untung","file":"laporan/dashboard_3ram_lpm.html"},{"nama":"RAM Lamau","tujuan":"Mandor - Grading 5%","harga":"Rp 3.900/kg","untung":-90060,"modal":3743,"restan":4097,"supir":["Dilak"],"status":"rugi","file":"laporan/dashboard_3ram_lpm.html"},{"nama":"RAM Nanga Taman","tujuan":"RAM Lamau - Grading 5%","harga":"Rp 3.850/kg","untung":471940,"modal":3710,"restan":2440,"supir":["Agus","Ardi"],"status":"tipis","file":"laporan/dashboard_3ram_lpm.html"}]}};
+
+function rp(v) {
+  return 'Rp ' + Math.abs(v).toLocaleString('id-ID');
+}
+
+function loadDate(k) {
+  if (!k || !DB[k]) return;
+  var d = DB[k];
+  document.getElementById('topDate').textContent = d.label;
+  document.getElementById('vKas').textContent = rp(d.kas.sisaKas);
+  document.getElementById('vKel').textContent = rp(d.kas.totalKeluar);
+  var td = d.kas.deposit.lamau + d.kas.deposit.mahap + d.kas.deposit.taman;
+  document.getElementById('vDep').textContent = rp(td);
+
+  // Modal Kas
+  var h = '';
+  h += '<div class="mrow"><span class="ml">Sisa kas kemarin</span><span class="mr">' + rp(d.kas.sisaKemarin) + '</span></div>';
+  if (d.kas.pinjaman > 0) {
+    h += '<div class="mrow"><span class="ml">+ Pinjaman masuk</span><span class="mr">' + rp(d.kas.pinjaman) + '</span></div>';
+  }
+  h += '<div class="mrow"><span class="ml">+ Uang masuk</span><span class="mr g">+ ' + rp(d.kas.uangMasuk) + '</span></div>';
+  h += '<div class="mrow"><span class="ml">- Total pengeluaran</span><span class="mr r">- ' + rp(d.kas.totalKeluar) + '</span></div>';
+  h += '<div class="mdiv"></div>';
+  h += '<div class="mtot"><div class="mtl">Sisa Kas Hari Ini</div><div class="mtv">' + rp(d.kas.sisaKas) + '</div></div>';
+  document.getElementById('mc-kas').innerHTML = h;
+
+  // Modal Pengeluaran
+  var cats = [
+    {l:'Pribadi', items:d.kas.pengeluaran.pribadi, c:'#2563eb', bg:'#EBF3FF', b:'#bfdbfe'},
+    {l:'Hutang / Kewajiban', items:d.kas.pengeluaran.hutang, c:'#d97706', bg:'#FFF9E6', b:'#fcd34d'},
+    {l:'Deposit RAM', items:d.kas.pengeluaran.depositRam, c:'#0891b2', bg:'#E0F7FA', b:'#a5f3fc'},
+    {l:'Operasional', items:d.kas.pengeluaran.operasional, c:'#7c3aed', bg:'#F3EEFF', b:'#d8b4fe'},
+    {l:'Pembayaran TBS / Brondol', items:d.kas.pengeluaran.pembayaran, c:'#16a34a', bg:'#E8FAF2', b:'#bbf7d0'}
   ];
-  var kh='',gt=0;
-  for(var i=0;i<cats.length;i++){
-    var cat=cats[i];
-    if(!cat.items||cat.items.length===0)continue;
-    var sub=0;
-    for(var j=0;j<cat.items.length;j++){sub+=cat.items[j].v;}
-    gt+=sub;
-    kh+='<div class="cbox" style="background:'+cat.bg+';border:1px solid '+cat.b+';">';
-    kh+='<div class="chead" style="color:'+cat.c+';">'+cat.l+'</div>';
-    for(var j=0;j<cat.items.length;j++){
-      kh+='<div class="citem"><span>'+cat.items[j].n+'</span><span class="cval">'+rp(cat.items[j].v)+'</span></div>';
+  var kh = '', gt = 0;
+  for (var i = 0; i < cats.length; i++) {
+    var cat = cats[i];
+    if (!cat.items || cat.items.length === 0) continue;
+    var sub = 0;
+    for (var j = 0; j < cat.items.length; j++) sub += cat.items[j].v;
+    gt += sub;
+    kh += '<div class="cbox" style="background:' + cat.bg + ';border:1px solid ' + cat.b + ';">';
+    kh += '<div class="chead" style="color:' + cat.c + ';">' + cat.l + '</div>';
+    for (var j = 0; j < cat.items.length; j++) {
+      kh += '<div class="citem"><span>' + cat.items[j].n + '</span><span class="cval">' + rp(cat.items[j].v) + '</span></div>';
     }
-    kh+='<div class="csub"><span>Subtotal</span><span style="color:'+cat.c+';">'+rp(sub)+'</span></div></div>';
+    kh += '<div class="csub"><span>Subtotal</span><span style="color:' + cat.c + ';">' + rp(sub) + '</span></div></div>';
   }
-  kh+='<div class="mdiv"></div>';
-  kh+='<div class="mtot"><div class="mtl">Total Pengeluaran</div><div class="mtv">'+rp(gt)+'</div></div>';
-  document.getElementById('mc-kel').innerHTML=kh;
-  document.getElementById('mc-dep').innerHTML=
-    '<div class="ditem"><div class="dname">RAM Lamau</div><div class="dval">'+rp(d.kas.deposit.lamau)+'</div></div>'+
-    '<div class="ditem"><div class="dname">RAM Mahap</div><div class="dval">'+rp(d.kas.deposit.mahap)+'</div></div>'+
-    '<div class="ditem"><div class="dname">RAM Taman</div><div class="dval">'+rp(d.kas.deposit.taman)+'</div></div>'+
-    '<div class="mdiv"></div>'+
-    '<div class="mtot"><div class="mtl">Total Deposit Terikat</div><div class="mtv">'+rp(td)+'</div></div>';
-  var rc='';
-  for(var i=0;i<d.ram.length;i++){
-    var r=d.ram[i];
-    var badge=r.status==='untung'?'Untung':r.status==='rugi'?'Rugi':'Tipis';
-    var vc=r.status==='untung'?'green':r.status==='rugi'?'red':'amber';
-    var px=r.untung>=0?'+':'-';
-    rc+='<div class="ram-card '+r.status+'">';
-    rc+='<div class="card-accent"></div>';
-    rc+='<div class="card-body">';
-    rc+='<div class="card-header">';
-    rc+='<div><div class="ram-title">'+r.nama+'</div><div class="ram-meta">'+r.tujuan+'</div></div>';
-    rc+='<div class="status-badge">'+badge+'</div>';
-    rc+='</div>';
-    rc+='<div class="card-kpi">';
-    rc+='<div class="ck"><div class="ck-label">Est. '+(r.status==='rugi'?'Gap':'Untung')+'</div>';
-    rc+='<div class="ck-val '+vc+'">'+px+rp(r.untung)+'</div>';
-    rc+='<div class="ck-unit">Belum potong susut</div></div>';
-    rc+='<div class="ck"><div class="ck-label">Modal/kg</div>';
-    rc+='<div class="ck-val amber">'+r.modal.toLocaleString('id-ID')+'</div>';
-    rc+='<div class="ck-unit">Rp/kg</div></div>';
-    rc+='<div class="ck"><div class="ck-label">Sisa Restan</div>';
-    rc+='<div class="ck-val blue">'+r.restan.toLocaleString('id-ID')+'</div>';
-    rc+='<div class="ck-unit">kg</div></div>';
-    rc+='</div>';
-    rc+='<div class="card-footer">';
-    rc+='<div style="font-size:11px;color:#8a96a8;">'+r.supir.join(' - ')+'</div>';
-    rc+='<a class="detail-btn" href="'+r.file+'">Detail</a>';
-    rc+='</div></div></div>';
+  kh += '<div class="mdiv"></div>';
+  kh += '<div class="mtot"><div class="mtl">Total Pengeluaran</div><div class="mtv">' + rp(gt) + '</div></div>';
+  document.getElementById('mc-kel').innerHTML = kh;
+
+  // Modal Deposit
+  document.getElementById('mc-dep').innerHTML =
+    '<div class="ditem"><div class="dname">RAM Lamau</div><div class="dval">' + rp(d.kas.deposit.lamau) + '</div></div>' +
+    '<div class="ditem"><div class="dname">RAM Mahap</div><div class="dval">' + rp(d.kas.deposit.mahap) + '</div></div>' +
+    '<div class="ditem"><div class="dname">RAM Taman</div><div class="dval">' + rp(d.kas.deposit.taman) + '</div></div>' +
+    '<div class="mdiv"></div>' +
+    '<div class="mtot"><div class="mtl">Total Deposit Terikat</div><div class="mtv">' + rp(td) + '</div></div>';
+
+  // RAM Cards
+  var rc = '';
+  for (var i = 0; i < d.ram.length; i++) {
+    var r = d.ram[i];
+    var badge = r.status === 'untung' ? 'Untung' : r.status === 'rugi' ? 'Rugi' : 'Tipis';
+    var vc = r.status === 'untung' ? 'green' : r.status === 'rugi' ? 'red' : 'amber';
+    var px = r.untung >= 0 ? '+' : '-';
+    rc += '<div class="ram-card ' + r.status + '">';
+    rc += '<div class="card-accent"></div>';
+    rc += '<div class="card-body">';
+    rc += '<div class="card-header">';
+    rc += '<div><div class="ram-title">' + r.nama + '</div><div class="ram-meta">' + r.tujuan + '</div></div>';
+    rc += '<div class="status-badge">' + badge + '</div>';
+    rc += '</div>';
+    rc += '<div class="card-kpi">';
+    rc += '<div class="ck"><div class="ck-label">Est. ' + (r.status === 'rugi' ? 'Gap' : 'Untung') + '</div>';
+    rc += '<div class="ck-val ' + vc + '">' + px + rp(r.untung) + '</div>';
+    rc += '<div class="ck-unit">Belum potong susut</div></div>';
+    rc += '<div class="ck"><div class="ck-label">Modal/kg</div>';
+    rc += '<div class="ck-val amber">' + r.modal.toLocaleString('id-ID') + '</div>';
+    rc += '<div class="ck-unit">Rp/kg</div></div>';
+    rc += '<div class="ck"><div class="ck-label">Sisa Restan</div>';
+    rc += '<div class="ck-val blue">' + r.restan.toLocaleString('id-ID') + '</div>';
+    rc += '<div class="ck-unit">kg</div></div>';
+    rc += '</div>';
+    rc += '<div class="card-footer">';
+    rc += '<div style="font-size:11px;color:#8a96a8;">' + r.supir.join(' - ') + '</div>';
+    rc += '<a class="detail-btn" href="' + r.file + '">Detail</a>';
+    rc += '</div></div></div>';
   }
-  document.getElementById('ramCards').innerHTML=rc;
-  document.getElementById('ramFoot').textContent='Lamau Persada Mandiri - '+d.label;
-  document.getElementById('arsipInfo').innerHTML='<div style="background:#EBF3FF;border-radius:10px;padding:10px 14px;border:1px solid #bfdbfe;font-size:12px;color:#2563eb;font-weight:600;">Data: '+d.label+'</div>';
+  document.getElementById('ramCards').innerHTML = rc;
+  document.getElementById('ramFoot').textContent = 'Lamau Persada Mandiri - ' + d.label;
+  document.getElementById('arsipInfo').innerHTML = '<div style="background:#EBF3FF;border-radius:10px;padding:10px 14px;border:1px solid #bfdbfe;font-size:12px;color:#2563eb;font-weight:600;">Data: ' + d.label + '</div>';
 }
-function showTab(n,btn){
-  var tabs=document.querySelectorAll('.tab-content');
-  for(var i=0;i<tabs.length;i++){tabs[i].classList.remove('active');}
-  var btns=document.querySelectorAll('.tab-btn');
-  for(var i=0;i<btns.length;i++){btns[i].classList.remove('active');}
-  document.getElementById('tab-'+n).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo(0,0);
-}
-function openM(id){document.getElementById(id).classList.add('on');document.body.style.overflow='hidden';}
-function closeM(id){document.getElementById(id).classList.remove('on');document.body.style.overflow='';}
-var DB_DATA = {"2026-05-08": {"label": "Jumat, 8 Mei 2026", "kas": {"sisaKemarin": 28865000, "uangMasuk": 40000000, "pinjaman": 15000000, "totalKeluar": 78160000, "sisaKas": 5705000, "deposit": {"lamau": 25500000, "mahap": 50000000, "taman": 15000000}, "pengeluaran": {"pribadi": [], "hutang": [{"n": "Pinjaman deposit (wajib kembali)", "v": 15000000}], "depositRam": [{"n": "Deposit Lamau", "v": 25500000}, {"n": "Deposit Mahap", "v": 50000000}, {"n": "Deposit Taman", "v": 15000000}], "operasional": [{"n": "Upah Pemuat", "v": 800000}, {"n": "Uang Makan", "v": 100000}, {"n": "Lansir Ropi DS", "v": 981000}, {"n": "Upah Muat Ropi DS", "v": 151000}, {"n": "Makan Ropi DS", "v": 100000}, {"n": "Makan Agus", "v": 50000}], "pembayaran": [{"n": "Pembayaran TBS Mahap", "v": 73869000}]}}, "ram": [{"nama": "RAM Mahap", "tujuan": "PAM - Grading 4%", "harga": "Rp 3.500/kg", "untung": 4874961, "modal": 3419, "restan": 16090, "supir": ["Hendi", "Jum", "Agus"], "status": "untung", "file": "laporan/mahap-08mei2026.html"}, {"nama": "RAM Lamau", "tujuan": "Mandor - Grading 5%", "harga": "Rp 3.900/kg", "untung": -90060, "modal": 3743, "restan": 4097, "supir": ["Dilak"], "status": "rugi", "file": "laporan/lamau-08mei2026.html"}, {"nama": "RAM Nanga Taman", "tujuan": "RAM Lamau - Grading 5%", "harga": "Rp 3.850/kg", "untung": 471940, "modal": 3710, "restan": 2440, "supir": ["Agus", "Ardi"], "status": "tipis", "file": "laporan/taman-08mei2026.html"}]}, "2026-05-09": {"label": "Sabtu, 9 Mei 2026", "kas": {"sisaKemarin": 67372000, "uangMasuk": 121049000, "pinjaman": 0, "totalKeluar": 141616000, "sisaKas": 46805000, "deposit": {"lamau": 25500000, "mahap": 50000000, "taman": 15000000}, "pengeluaran": {"pribadi": [{"n": "Bayar Cicilan Laptop Adek", "v": 2900000}, {"n": "TF Besi 15", "v": 664000}, {"n": "Bayar Link Mila", "v": 61000}], "hutang": [{"n": "Pinjaman Riko (Deposit Lamau)", "v": 500000}], "depositRam": [{"n": "Deposit Mahap", "v": 50000000}, {"n": "Deposit Nata (Lamau)", "v": 25000000}, {"n": "Deposit Taman", "v": 15000000}], "operasional": [{"n": "Loper 3 DT", "v": 902500}], "pembayaran": [{"n": "Bayar Moen Semalam (Brondol)", "v": 17861000}, {"n": "Bayar Moen Stlah Loper", "v": 28428000}]}}, "ram": [{"nama": "RAM Mahap", "tujuan": "PAM - Grading 4%", "harga": "Rp 3.500/kg", "untung": 4874961, "modal": 3419, "restan": 16090, "supir": ["Hendi", "Jum", "Agus"], "status": "untung", "file": "laporan/mahap-08mei2026.html"}, {"nama": "RAM Lamau", "tujuan": "Mandor - Grading 5%", "harga": "Rp 3.900/kg", "untung": -90060, "modal": 3743, "restan": 4097, "supir": ["Dilak"], "status": "rugi", "file": "laporan/lamau-08mei2026.html"}, {"nama": "RAM Nanga Taman", "tujuan": "RAM Lamau - Grading 5%", "harga": "Rp 3.850/kg", "untung": 471940, "modal": 3710, "restan": 2440, "supir": ["Agus", "Ardi"], "status": "tipis", "file": "laporan/taman-08mei2026.html"}]}};
-var sel=document.getElementById('arsipSel');
-var keys=Object.keys(DB_DATA).sort().reverse();
-for(var i=0;i<keys.length;i++){
-  var o=document.createElement('option');
-  o.value=keys[i];o.textContent=DB_DATA[keys[i]].label;
+
+// TAB SWITCH
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// MODAL OPEN
+document.querySelectorAll('.kas-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var id = card.getAttribute('data-modal');
+    document.getElementById(id).classList.add('on');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// MODAL CLOSE
+document.querySelectorAll('.mclose').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.getElementById(btn.getAttribute('data-close')).classList.remove('on');
+    document.body.style.overflow = '';
+  });
+});
+
+// MODAL CLOSE ON OUTSIDE CLICK
+document.querySelectorAll('.modal').forEach(function(m) {
+  m.addEventListener('click', function(e) {
+    if (e.target === m) {
+      m.classList.remove('on');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// ARSIP DROPDOWN
+document.getElementById('arsipSel').addEventListener('change', function() {
+  loadDate(this.value);
+});
+
+// INIT
+var keys = Object.keys(DB).sort().reverse();
+var sel = document.getElementById('arsipSel');
+for (var i = 0; i < keys.length; i++) {
+  var o = document.createElement('option');
+  o.value = keys[i];
+  o.textContent = DB[keys[i]].label;
   sel.appendChild(o);
 }
-var lat=keys[0];
-sel.value=lat;
-loadDate(lat);
+sel.value = keys[0];
+loadDate(keys[0]);
 </script>
+
 </body>
 </html>
